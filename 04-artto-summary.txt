@@ -1,0 +1,41 @@
+Artto Project Summary
+
+Goal:
+A browser-based offline drawing and animation editor that works without a server, supports desktop and mobile devices, and can be installed as a PWA.
+
+Project vision:
+- Offline-first
+- Fast to open and use
+- Works from local file or installable app
+- Multi-device compatibility
+- Supports layers, opacity, blend modes, selection, undo/redo, save/load, export
+- Evolves into an animation editor later
+
+Current state:
+The current prototype is functional for basic drawing, but it is still a single-file implementation with structural limits. It remains useful as a proof of concept, but it is not yet a production-grade architecture.
+
+Main issues:
+- Single-file architecture
+- Weak separation between UI and rendering logic
+- Selection instability
+- History snapshot limitations
+- Fill/alpha inconsistency
+- Missing full PWA packaging
+- Missing animation architecture
+
+Main fix priorities:
+1. Separate state from rendering
+2. Stabilize history and snapshot logic
+3. Improve selection and fill logic
+4. Make layer compositor explicit
+5. Add PWA packaging
+6. Then add animation timeline and frames
+
+Status:
+- Prototype ready: medium
+- Architecture maturity: low
+- Animation readiness: very low
+- PWA readiness: not started
+
+Last updated:
+2026-09-12
