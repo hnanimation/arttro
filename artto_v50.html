@@ -105,7 +105,7 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
-const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=18,op=1,eraserSize=18,eraserOp=1,col='#17181c',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
+const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=18,op=1,eraserSize=18,eraserOp=1,col='#17181c',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,rotation=0,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
 let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null,penActiveInSession=false;const touchPointers=new Map();
 // Drawing Core v40: input -> stroke data -> renderer -> layer commit.
 function isTouchNavTarget(e){
@@ -169,7 +169,7 @@ function point(e){
   return {x, y, inside: x >= 0 && x <= canvasW && y >= 0 && y <= canvasH, p: e.pressure > 0 ? e.pressure : .5};
 }
 function fitPaper(){const maxW=Math.max(120,Math.min(stage.clientWidth-110,1050));const maxH=Math.max(120,stage.clientHeight-24);const k=Math.min(maxW/canvasW,maxH/canvasH);paper.style.width=Math.max(120,canvasW*k)+'px';paper.style.height=Math.max(120,canvasH*k)+'px';paper.style.transformOrigin='center center';applyTransform()}
-function applyTransform(){paper.style.transform=`translate(${panX}px,${panY}px) scale(${zoom})`}
+function applyTransform(){paper.style.transform=`translate(${panX}px,${panY}px) rotate(${rotation}deg) scale(${zoom})`}
 window.addEventListener('resize',fitPaper,{passive:true});
 function snapshot(){
   if(!layers.length) return;
@@ -419,10 +419,12 @@ function floodFill(c,x,y,color){
 }
 function getPointerCenter(p1,p2){return{x:(p1.clientX+p2.clientX)/2,y:(p1.clientY+p2.clientY)/2}}
 function getDistance(p1,p2){return Math.max(1,Math.hypot(p1.clientX-p2.clientX,p1.clientY-p2.clientY))}
+function getAngle(p1,p2){return Math.atan2(p2.clientY-p1.clientY,p2.clientX-p1.clientX)}
+function getShortestAngleDelta(currentAngle,startAngle){return Math.atan2(Math.sin(currentAngle-startAngle),Math.cos(currentAngle-startAngle));}
 function getPaperCenter(){const r=paper.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}}
 function updateDebugHUD(extra=''){
   if(!debugHUD) return;
-  debugHUD.innerHTML=`Input: touch × ${touchPointers.size}<br>State: ${touchState}<br>Zoom: ${zoom.toFixed(2)}<br>Pan: ${Math.round(panX)}, ${Math.round(panY)}${extra?`<br>${extra}`:''}`;
+  debugHUD.innerHTML=`Input: touch × ${touchPointers.size}<br>State: ${touchState}<br>Zoom: ${zoom.toFixed(2)}<br>Rotation: ${rotation.toFixed(1)}°<br>Pan: ${Math.round(panX)}, ${Math.round(panY)}${extra?`<br>${extra}`:''}`;
 }
 function beginPan(p){
   panStart={pointerX:p.clientX,pointerY:p.clientY,panX,panY};
@@ -432,14 +434,15 @@ function beginPinch(){
   if(touchPointers.size!==2)return;
   const pts=[...touchPointers.values()],a=pts[0],b=pts[1];
   const center=getPointerCenter(a,b),dist=getDistance(a,b),paperCenter=getPaperCenter();
-  // Convert the screen midpoint to the untransformed paper-local point under the fingers.
   const localX=(center.x-paperCenter.x-panX)/zoom+paper.clientWidth/2;
   const localY=(center.y-paperCenter.y-panY)/zoom+paper.clientHeight/2;
   pinchAnchor={
     startZoom:zoom,
+    startRotation:rotation,
     startPanX:panX,
     startPanY:panY,
     startDist:dist,
+    startAngle:getAngle(a,b),
     startCenterX:center.x,
     startCenterY:center.y,
     localX,
@@ -479,6 +482,10 @@ function onTouchMove(e){
   touchPointers.set(e.pointerId,{clientX:e.clientX,clientY:e.clientY});
   if(touchState==='pinch'&&touchPointers.size===2){
     const pts=[...touchPointers.values()],center=getPointerCenter(pts[0],pts[1]),dist=getDistance(pts[0],pts[1]);
+    const currentAngle=getAngle(pts[0],pts[1]);
+    const deltaAngle=getShortestAngleDelta(currentAngle,pinchAnchor.startAngle);
+    rotation=pinchAnchor.startRotation + (deltaAngle * 180 / Math.PI);
+
     let newZoom=pinchAnchor.startZoom*(dist/pinchAnchor.startDist);
     newZoom=Math.max(.35,Math.min(4,newZoom));
     const ratio=newZoom/pinchAnchor.startZoom;
