@@ -2,6 +2,10 @@
 
 Artto is an offline-first browser-based drawing and animation prototype designed for desktop and tablet use. It runs as a lightweight HTML/CSS/JS app, supports touch and mouse input, and focuses on core creative workflows such as drawing, layers, opacity, blend modes, selection, undo/redo, project save/load, and export.
 
+## UI preview
+
+![Artto UI preview](assets/screenshots/artto-ui.svg)
+
 ## Project goal
 Artto aims to become a simple but capable digital sketch and animation workspace that works without a backend and can later grow into a more complete frame-based editor.
 
