@@ -27,11 +27,11 @@ We will review the report and respond as quickly as possible.
 
 ## Project handling
 
-This project is not intended for external commercial use, unofficial forks, or independent distribution. Any security issue must be addressed within the official project workflow and authority.
+This project is not intended for external commercial use, unofficial forks, or independent distribution. Any security issue must be addressed within the official project workflow, under the project owner’s authority, and in accordance with the project contribution policy.
 
 ## Contribution safety
 
-Contributors must not open a pull request containing an undisclosed vulnerability or exploit. Any such issue must be reported privately before it is discussed in public channels.
+Contributors must not open a pull request containing an undisclosed vulnerability or exploit. Any such issue must be reported privately before it is discussed in public channels and before any public contribution is made.
 
 ## No warranty
 

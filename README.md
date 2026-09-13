@@ -46,7 +46,7 @@ This repository contains a working prototype with an interactive drawing canvas 
 The project is intentionally kept in a prototype stage while the core interaction model is being refined. The next important steps are to clean up state management, input handling, history logic, and rendering structure before deeper animation work begins.
 
 ## Contributing
-Contributions are welcome only through the official project workflow and only under the project owner’s review and approval.
+Contributions are welcome only through the official project repository and the official project workflow, and only under the project owner’s review, approval, and assignment policy.
 
 Please read:
 - [CONTRIBUTING.md](CONTRIBUTING.md)
@@ -58,7 +58,7 @@ Do not fork this project into a separate commercial or independent product.
 ## Legal and licensing status
 This project is protected by a custom proprietary contribution policy. It is not a standard public open-source license and should not be treated as one.
 
-The project owner retains full ownership of the software and all accepted contributions. No commercial use, redistribution, public fork, or independent release is permitted without prior written permission.
+The project owner retains full ownership of the software and all accepted contributions. Any accepted contribution becomes part of the official project and is assigned to the project owner under this policy. No commercial use, redistribution, public fork, or independent release is permitted without prior written permission.
 
 See:
 - [LICENSE](LICENSE)

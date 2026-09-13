@@ -2,15 +2,15 @@
 
 Thank you for your interest in contributing to Artto.
 
-This project is a controlled, non-commercial, contribution-based project. Contributions are welcome only through the official project repository and only under the project owner’s review and approval.
+This project is maintained as a controlled, non-commercial, contribution-based project. Contributions are welcome only through the official project repository and only under the project owner’s review and approval.
 
 ## Contribution rules
 
 - Contributions must be submitted through the official project repository.
 - Do not fork this project and publish it as your own separate product.
 - Do not use this project for commercial purposes.
-- Do not copy code, assets, or designs into another project without written permission.
-- Do not create separate releases, forks, packages, or derivatives without approval.
+- Do not copy code, assets, or design elements into another project without written permission.
+- Do not create independent releases, branches, packages, or derivatives without approval.
 - Any contribution submitted to the project remains subject to the project owner’s rights and final review.
 
 ## What can be contributed
@@ -35,11 +35,11 @@ You may contribute:
 ## Ownership and assignment
 
 By submitting a contribution to this project, you agree that:
-- the project owner retains full ownership of the project,
-- the contribution becomes part of the official project subject to review,
+- the project owner retains full ownership of the project and all accepted contributions,
+- the contribution becomes part of the official project subject to review and approval,
 - you assign all right, title, and interest in the contribution to the project owner,
 - you do not retain ownership, commercial rights, or exclusive rights over the submitted contribution,
-- you may not claim authorship or commercial control over the project or any accepted submission outside the official project workflow.
+- you may not claim authorship, ownership, or commercial control over the project or any accepted submission outside the official project workflow.
 
 ## Final note
 

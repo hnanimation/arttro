@@ -15,9 +15,9 @@ This project and all associated materials are the exclusive property of the proj
 
 ## Contribution policy
 
-Contributions are allowed only through the official project repository and only under the project owner’s review and approval.
+Contributions are allowed only through the official project repository and only under the project owner’s review, approval, and assignment policy.
 
-By submitting a contribution, the contributor assigns all right, title, and interest in the contribution to the project owner. The project owner may accept, reject, or modify any contribution without obligation.
+By submitting a contribution, the contributor assigns all right, title, and interest in the contribution to the project owner. The project owner retains full ownership of the project and all accepted contributions, and may accept, reject, or modify any contribution without obligation.
 
 ## Written permission
 
