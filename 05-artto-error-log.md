@@ -125,7 +125,27 @@ The main app logic was not the core root cause. The real failure was tied to dep
 
 ---
 
-## 6) Recommended follow-up
+## 6) Problem: Mouse navigation pan allowed browser default behavior
+Date: 2026-09-14
+
+### Symptoms
+- Middle/right-click or modifier-based mouse navigation could trigger browser default actions.
+- Panning felt inconsistent when the user tried to navigate the canvas with the mouse.
+
+### Root cause
+The mouse-pan branch was updating the paper transform but did not prevent the browser's default pointer behavior. That allowed context-menu or native navigation interference during canvas navigation.
+
+### Successful fix
+- Prevented default pointer behavior when mouse panning begins and while it continues.
+- Captured the pointer during pan gestures to keep navigation stable.
+- Released pointer capture when the gesture ends.
+
+### Verification
+Checked the input logic in the app code and validated the smoke test for document state and pointer transforms still passes after the fix.
+
+---
+
+## 7) Recommended follow-up
 - Keep this log updated when future bugs are found.
 - Always verify the live GitHub Pages URL after any manifest or service worker change.
 - For any future deployment issue, check in order:
@@ -133,4 +153,5 @@ The main app logic was not the core root cause. The real failure was tied to dep
   2. sw.js
   3. app entry page
   4. asset paths and icons
-  5. live browser verification
+  5. mouse input and navigation behavior
+  6. live browser verification

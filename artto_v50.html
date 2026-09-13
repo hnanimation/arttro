@@ -1,4 +1,4 @@
-<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#15171b"><link rel="manifest" href="./manifest.json"><title>Artto v49</title>
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#15171b"><link rel="manifest" href="./manifest.json"><title>Artto v5.0.2</title>
 <style>
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none}html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;font-family:system-ui,sans-serif;background:#101216;color:#eee}.app{height:100vh;display:grid;grid-template-columns:72px 1fr;grid-template-rows:58px 1fr 42px}.top{grid-column:1/3;display:flex;align-items:center;gap:7px;padding:7px 10px;background:#191b20;border-bottom:1px solid #2b2e35;direction:ltr}.top .brand{margin-left:auto;margin-right:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw;direction:ltr;font-weight:800;font-size:14px}.top button{height:42px;min-width:42px}.action,.tool{border:1px solid #343840;background:#23262c;color:#eee;border-radius:10px;cursor:pointer}.action:hover,.tool:hover,.tool.active{background:#363b44}.top .tool{font-size:20px}.top .label{font-size:11px;opacity:.65;padding:0 3px}.install-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;min-width:92px}.install-btn .install-text{font-size:12px;font-weight:700;letter-spacing:.03em}.install-btn:disabled{opacity:.55;cursor:not-allowed}.stage{grid-column:1/3;position:relative;overflow:hidden;background:#0b0d10;display:flex;align-items:center;justify-content:center;touch-action:none}.paper{position:relative;isolation:isolate;width:min(82vw,1050px);height:min(78vh,760px);min-width:120px;min-height:120px;background:#fff;box-shadow:0 18px 60px #0009;overflow:hidden;transform-origin:center center}.layerCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;pointer-events:none}.selection{position:absolute;border:1px dashed #111;outline:1px solid #fff;pointer-events:none;display:none;z-index:100}.selection-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none;z-index:101;overflow:visible}.selection-outline polyline{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:7 5;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 1px #fff)}.left-controls{position:absolute;left:0;top:0;bottom:0;width:58px;background:#191b20;border-right:1px solid #2b2e35;display:flex;flex-direction:column;align-items:center;padding:12px 4px;gap:10px;z-index:300}.vcontrol{position:relative;height:42%;min-height:150px;max-height:330px;width:46px;display:flex;align-items:center;justify-content:center}.vcontrol input{width:160px;transform:rotate(-90deg);accent-color:#ddd}.vnum{position:absolute;right:-2px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:10px;white-space:nowrap;color:#ddd;pointer-events:none}.vlabel{font-size:10px;opacity:.55;position:absolute;bottom:5px;writing-mode:vertical-rl;transform:rotate(180deg)}.bottom{grid-column:1/3;background:#191b20;border-top:1px solid #2b2e35;display:flex;align-items:center;padding:5px 10px;gap:8px;font-size:11px}.spacer{flex:1}.status{opacity:.65}.popup{position:absolute;top:0;left:58px;right:auto;background:#1b1e24;border:1px solid #3a3e46;border-radius:12px;box-shadow:0 15px 45px #000b;z-index:1000;display:none}.popup.open{display:block}.layers{width:300px;padding:12px}.colors{width:340px;padding:14px}.brushes{width:260px;padding:12px}.resize{width:270px;padding:14px}.section-title{font-size:12px;opacity:.65;margin-bottom:10px}.layer{padding:9px;background:#24272e;border-radius:8px;margin:5px 0;display:flex;gap:8px;align-items:center;cursor:pointer}.layer.active{outline:1px solid #aaa}.layer .eye{margin-right:auto;background:none;border:0;color:var(--text);cursor:pointer;width:30px;height:30px;padding:3px;display:flex;align-items:center;justify-content:center}.layer .eye .icon{width:20px;height:20px}.layer .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row{display:flex;align-items:center;gap:8px;margin:9px 0}.row label{flex:1;font-size:12px}.popup select,.popup input[type=text],.popup input[type=number]{background:#24272e;color:#fff;border:1px solid #3a3e46;border-radius:7px;padding:7px}.popup input[type=number]{width:100px}.group{display:flex;gap:6px;flex-wrap:wrap}.swatches{display:flex;gap:7px;flex-wrap:wrap}.sw{width:28px;height:28px;border-radius:7px;border:2px solid #444;cursor:pointer}.colorSquare{height:190px;border-radius:8px;position:relative;overflow:hidden;cursor:crosshair;background:linear-gradient(to bottom,transparent,#000),linear-gradient(to right,#fff,#f00)}.colorPointer{position:absolute;width:14px;height:14px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 1px #000;transform:translate(-50%,-50%);pointer-events:none}.hue{width:100%;height:18px;margin-top:10px;border-radius:9px;appearance:none;background:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00);cursor:pointer}.hue::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #222}.colorInfo{display:flex;align-items:center;gap:8px;margin-top:9px}.current{width:32px;height:32px;border-radius:50%;border:1px solid #555;margin:0}.hex{font-family:monospace;font-size:12px}.saveColor{margin-right:auto}.brush-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;cursor:pointer}.brush-item:hover,.brush-item.active{background:#343942}.brush-preview{width:46px;height:30px;display:flex;align-items:center}.brush-preview i{display:block;width:40px;height:2px;background:#eee;border-radius:99px}.brush-item:nth-child(3) .brush-preview i{height:1px}.brush-item:nth-child(4) .brush-preview i{height:9px;opacity:.65}.brush-item:nth-child(5) .brush-preview i{height:14px}.brush-item:nth-child(6) .brush-preview i{height:4px}.muted{font-size:10px;opacity:.55}.icon{font-size:20px;line-height:1}.hidden{display:none!important}
 @media(max-width:800px){.top{gap:4px}.top .brand{display:none}.top button{min-width:38px}.left-controls{width:62px}.app{grid-template-columns:62px 1fr}.paper{width:82vw;height:75vh}.popup{left:0;right:auto;max-width:calc(100vw - 10px)}}
@@ -54,24 +54,23 @@ button.active .icon,button[aria-pressed="true"] .icon{color:var(--active)!import
 <header class="top" id="topbar">
 <button class="action" id="redo" title="Redo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13"/></svg></button><button class="action" id="undo" title="Undo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"/></svg></button>
 <button class="action" id="exportPng" title="Export PNG"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21"/><path d="m14 19 3 3v-5.5"/><path d="m17 22 3-3"/><circle cx="9" cy="9" r="2"/></svg></button><button class="action" id="save" title="Save Project"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/></svg></button><button class="action" id="load" title="Open Project"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg></button>
-<button class="action" id="downloadBtn" title="Download App"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 18 5 5 5-5"/><path d="M4 21h16"/></svg></button>
 <button class="action" id="resizeBtn" title="Canvas Size"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button><button class="action color-current-btn" id="colorBtn" title="Current Color" aria-label="Current Color"><span class="color-current-dot" id="colorCurrentDot" aria-hidden="true"></span></button><button class="action" id="layersBtn" title="Layers"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 13.74a2 2 0 0 1-2 0L2.5 8.87a1 1 0 0 1 0-1.74L11 2.26a2 2 0 0 1 2 0l8.5 4.87a1 1 0 0 1 0 1.74z"/><path d="m20 14.285 1.5.845a1 1 0 0 1 0 1.74L13 21.74a2 2 0 0 1-2 0l-8.5-4.87a1 1 0 0 1 0-1.74l1.5-.845"/></svg></button><button class="action" id="brushBtn" title="Brushes"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 10 3 3"/><path d="M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z"/><path d="M9.969 17.031 21.378 5.624a1 1 0 0 0-3.002-3.002L6.967 14.031"/></svg></button>
-<button class="action tool" data-tool="brush" title="Brush"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 10 3 3"/><path d="M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z"/><path d="M9.969 17.031 21.378 5.624a1 1 0 0 0-3.002-3.002L6.967 14.031"/></svg></button><button class="action tool" data-tool="eraser" title="Eraser"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg></button><button class="action tool" data-tool="move" title="Move"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20"/><path d="m15 19-3 3-3-3"/><path d="m19 9 3 3-3 3"/><path d="M2 12h20"/><path d="m5 9-3 3 3 3"/><path d="m9 5 3-3 3 3"/></svg></button><button class="action tool" data-tool="select" title="Selection"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3a2 2 0 0 0-2 2"/><path d="M19 3a2 2 0 0 1 2 2"/><path d="M21 19a2 2 0 0 1-2 2"/><path d="M5 21a2 2 0 0 1-2-2"/><path d="M9 3h1"/><path d="M9 21h1"/><path d="M14 3h1"/><path d="M14 21h1"/><path d="M3 9v1"/><path d="M21 9v1"/><path d="M3 14v1"/><path d="M21 14v1"/></svg></button><button class="action tool" data-tool="lasso" title="Lasso Selection"><svg class="icon lucide lucide-lasso" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5c-2.8 0-4.5 2-4.5 4.2S4.2 13 7 13h8.5c3 0 6-2 6-4.5S19 4 16.5 4c-2.2 0-3.5 1.5-3.5 3.2 0 1.4 1 2.3 2.3 2.3 1.1 0 2-.7 2-1.7"/><path d="M7 13c-2 0-3.5 1.5-3.5 3.2 0 1.8 1.5 3 3.4 3 1.4 0 2.5-.8 2.5-2 0-.9-.7-1.7-1.7-1.7"/></svg></button><button class="action tool" data-tool="fill" title="Fill Tool"><svg class="icon lucide lucide-paint-bucket" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2c.8.8 2 .8 2.8 0L19 11Z"/><path d="m5 2 5 5"/><path d="M2 13h15"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg></button>
-<button class="action" id="fillWhite" title="Fill Canvas White"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 15 7-7 7 7-4 4H8z"/><path d="m11 8 2-2 5 5"/><path d="M18 3c0 1.5-2 2.5-2 4a2 2 0 0 0 4 0c0-1.5-2-2.5-2-4Z"/></svg></button><button class="action" id="clearCanvas" title="Clear Canvas"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="m19 6-1 15H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
-<button class="action" id="threeD" title="3D"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></button><button class="action" id="rename" title="Rename Project"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 11.5V5a2 2 0 0 1 2-2h3.9c.7 0 1.3.3 1.7.9l.8 1.2c.4.6 1 .9 1.7.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9.5"/><path d="M11.378 13.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></button><div class="brand" id="docInfo">Untitled · 2048 × 1536</div><button class="action" id="themeBtn" title="Toggle Light / Dark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/></svg></button><button class="action" id="installBtn" type="button" title="Install App" aria-label="Install App"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 18 5 5 5-5"/><path d="M5 21h14"/></svg></button>
+<button class="action tool" data-tool="brush" title="Brush"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 10 3 3"/><path d="M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z"/><path d="M9.969 17.031 21.378 5.624a1 1 0 0 0-3.002-3.002L6.967 14.031"/></svg></button><button class="action tool" data-tool="eraser" title="Eraser"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg></button><button class="action tool" data-tool="move" title="Move"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20"/><path d="m15 19-3 3-3-3"/><path d="m19 9 3 3-3 3"/><path d="M2 12h20"/><path d="m5 9-3 3 3 3"/><path d="m9 5 3-3 3 3"/></svg></button><button class="action tool" data-tool="select" title="Selection"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3a2 2 0 0 0-2 2"/><path d="M19 3a2 2 0 0 1 2 2"/><path d="M21 19a2 2 0 0 1-2 2"/><path d="M5 21a2 2 0 0 1-2-2"/><path d="M9 3h1"/><path d="M9 21h1"/><path d="M14 3h1"/><path d="M14 21h1"/><path d="M3 9v1"/><path d="M21 9v1"/><path d="M3 14v1"/><path d="M21 14v1"/></svg></button><button class="action tool lasso-tool" data-tool="lasso" title="Lasso" aria-label="Lasso"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.704 14.467a10 8 0 1 1 3.115 2.375"/><path d="M7 22a5 5 0 0 1-2-3.994"/><circle cx="5" cy="16" r="2"/></svg></button><button class="action tool" data-tool="fill" title="Fill Tool"><svg class="icon lucide lucide-paint-bucket" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2c.8.8 2 .8 2.8 0L19 11Z"/><path d="m5 2 5 5"/><path d="M2 13h15"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg></button>
+<button class="action" id="clearCanvas" title="Clear Canvas"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="m19 6-1 15H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+<button class="action" id="threeD" title="3D"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></button><button class="action" id="rename" title="Rename Project"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 11.5V5a2 2 0 0 1 2-2h3.9c.7 0 1.3.3 1.7.9l.8 1.2c.4.6 1 .9 1.7.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9.5"/><path d="M11.378 13.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></button><div class="brand" id="docInfo">Untitled · 2048 × 1536</div><button class="action" id="themeBtn" title="Toggle Light / Dark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/></svg></button><button class="action" id="installBtn" type="button" title="Add to Home Screen · Artto" aria-label="Add to Home Screen · Artto"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c4.97 0 9 2.24 9 5s-4.03 5-9 5-9-2.24-9-5 4.03-5 9-5Z"/><path d="M3 8v3c0 2.76 4.03 5 9 5s9-2.24 9-5V8"/><path d="M12 16v6"/><path d="m15 19-3 3-3-3"/></svg></button>
 </header>
 <main class="stage" id="stage"><div class="paper" id="paper"><div class="selection" id="selection"></div><svg class="selection-outline" id="selectionOutline" viewBox="0 0 2048 1536" preserveAspectRatio="none"><polyline id="selectionPolyline" points=""></polyline></svg></div>
-<div class="left-controls"><div class="vcontrol"><input id="size" type="range" min="1" max="160" value="18"><span class="vnum" id="sv">18 px</span><span class="vlabel">Size</span></div><div class="vcontrol"><input id="opacity" type="range" min="1" max="100" value="100"><span class="vnum" id="ov">100%</span><span class="vlabel">Opacity</span></div></div>
+<div class="left-controls"><div class="vcontrol"><input id="size" type="range" min="1" max="160" value="7"><span class="vnum" id="sv">7 px</span><span class="vlabel">Size</span></div><div class="vcontrol"><input id="opacity" type="range" min="1" max="100" value="100"><span class="vnum" id="ov">100%</span><span class="vlabel">Opacity</span></div></div>
 <div class="popup colors" id="colorsPopup"><div class="section-title">Color Picker</div><div class="colorSquare" id="colorSquare"><div class="colorPointer" id="colorPointer"></div></div><input class="hue" id="hue" type="range" min="0" max="360" value="0"><div class="colorInfo"><div class="current" id="currentColor"></div><span class="hex" id="hex">#17181C</span><button class="action saveColor" id="saveColor">＋ Save Color</button></div><div class="section-title">Saved Colors</div><div class="swatches" id="swatches"></div></div>
 <div class="popup layers" id="layersPopup"><div class="section-title">Layers</div><div class="row"><label>Blend Mode</label><select id="blend"><option value="source-over">Normal</option><option value="multiply">Multiply</option><option value="screen">Screen</option><option value="overlay">Overlay</option><option value="darken">Darken</option><option value="lighten">Lighten</option><option value="hard-light">Hard Light</option><option value="soft-light">Soft Light</option><option value="difference">Difference</option><option value="exclusion">Exclusion</option></select></div><div class="row"><label>Layer Opacity</label><span id="lv">100%</span></div><input id="layerOpacity" type="range" min="0" max="100" value="100" style="width:100%"><div id="layers"></div><div class="group"><button class="action" id="addLayer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><button class="action" id="renameLayer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 11.5V5a2 2 0 0 1 2-2h3.9c.7 0 1.3.3 1.7.9l.8 1.2c.4.6 1 .9 1.7.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9.5"/><path d="M11.378 13.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></button><button class="action" id="delLayer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="m19 6-1 15H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button></div></div>
 <div class="popup brushes" id="brushesPopup"><div class="section-title">Brushes</div><div class="brush-item active" data-brush="ink"><span class="brush-preview"><i></i></span><div><b>Ink</b><div class="muted">Clean line</div></div></div></div>
 <div class="popup resize" id="resizePopup"><div class="section-title">Canvas Size</div><div class="row"><label>Width</label><input id="cw" type="number" min="64" max="8192" value="2048"><span>px</span></div><div class="row"><label>Height</label><input id="ch" type="number" min="64" max="8192" value="1536"><span>px</span></div><button class="action" id="applyResize">Apply</button><div class="muted">Preserves existing artwork when possible.</div></div>
-</main><footer class="bottom"><span id="coords">0, 0</span><span class="status" id="appVersion">v51</span><div class="spacer"></div><span class="status" id="status">Ink · Ready</span></footer></div>
+</main><footer class="bottom"><span id="coords">0, 0</span><span class="status" id="appVersion">v5.0.2</span><div class="spacer"></div><span class="status" id="status">Ink · Ready</span></footer></div>
 <script>
-// Artto v51: touch stability fix, minimal state model cleanup, and version metadata display.
+// Artto v5.0.2: touch stability fix, minimal state model cleanup, and version metadata display.
 const paper=document.getElementById('paper'),stage=document.getElementById('stage'),selectionBox=document.getElementById('selection'),selectionOutline=document.getElementById('selectionOutline'),selectionPolyline=document.getElementById('selectionPolyline');
 const docInfo=document.getElementById('docInfo'),colorCurrentDot=document.getElementById('colorCurrentDot'),sizeEl=document.getElementById('size'),opacityEl=document.getElementById('opacity'),hue=document.getElementById('hue'),colorSquare=document.getElementById('colorSquare'),colorPointer=document.getElementById('colorPointer'),swatches=document.getElementById('swatches'),currentColor=document.getElementById('currentColor'),hex=document.getElementById('hex'),saveColor=document.getElementById('saveColor'),resizePopup=document.getElementById('resizePopup'),layersPopup=document.getElementById('layersPopup'),brushesPopup=document.getElementById('brushesPopup'),colorsPopup=document.getElementById('colorsPopup'),status=document.getElementById('status'),coords=document.getElementById('coords'),appVersion=document.getElementById('appVersion'),sv=document.getElementById('sv'),ov=document.getElementById('ov'),lv=document.getElementById('lv'),blend=document.getElementById('blend'),layerOpacity=document.getElementById('layerOpacity'),cw=document.getElementById('cw'),ch=document.getElementById('ch'),applyResize=document.getElementById('applyResize');
-const undo=document.getElementById('undo'),redo=document.getElementById('redo'),save=document.getElementById('save'),load=document.getElementById('load'),installBtn=document.getElementById('installBtn'),downloadBtn=document.getElementById('downloadBtn'),exportPng=document.getElementById('exportPng'),resizeBtn=document.getElementById('resizeBtn'),colorBtn=document.getElementById('colorBtn'),layersBtn=document.getElementById('layersBtn'),brushBtn=document.getElementById('brushBtn'),rename=document.getElementById('rename');
+const undo=document.getElementById('undo'),redo=document.getElementById('redo'),save=document.getElementById('save'),load=document.getElementById('load'),installBtn=document.getElementById('installBtn'),exportPng=document.getElementById('exportPng'),resizeBtn=document.getElementById('resizeBtn'),colorBtn=document.getElementById('colorBtn'),layersBtn=document.getElementById('layersBtn'),brushBtn=document.getElementById('brushBtn'),rename=document.getElementById('rename');
 const addLayer=document.getElementById('addLayer'),delLayer=document.getElementById('delLayer'),renameLayer=document.getElementById('renameLayer');const themeBtn=document.getElementById('themeBtn');
 const debugHUD=document.getElementById('debugHUD');
 let deferredInstallPrompt=null;
@@ -80,19 +79,19 @@ function updateInstallButtonState(){
   const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   if (standalone) {
     installBtn.disabled = true;
-    installBtn.title = 'Installed';
-    installBtn.setAttribute('aria-label', 'Installed');
+    installBtn.title = 'Artto installed';
+    installBtn.setAttribute('aria-label', 'Artto installed');
     return;
   }
   if (deferredInstallPrompt) {
     installBtn.disabled = false;
-    installBtn.title = 'Install App';
-    installBtn.setAttribute('aria-label', 'Install App');
+    installBtn.title = 'Install Artto to Home Screen';
+    installBtn.setAttribute('aria-label', 'Install Artto to Home Screen');
     return;
   }
   installBtn.disabled = false;
-  installBtn.title = 'Add shortcut from browser menu';
-  installBtn.setAttribute('aria-label', 'Add shortcut from browser menu');
+  installBtn.title = 'Add Artto to Home Screen';
+  installBtn.setAttribute('aria-label', 'Add Artto to Home Screen');
 }
 function applyTheme(theme){document.documentElement.dataset.theme=theme;themeBtn.title=theme==='dark'?'Switch to Light':'Switch to Dark';localStorage.setItem('canvas-theme',theme)}
 applyTheme(localStorage.getItem('canvas-theme')||'light');themeBtn.onclick=()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
@@ -105,7 +104,7 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
-const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=18,op=1,eraserSize=18,eraserOp=1,col='#17181c',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,rotation=0,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
+const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=7,op=1,eraserSize=7,eraserOp=1,col='#000000',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,rotation=0,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
 let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null,penActiveInSession=false;const touchPointers=new Map();
 // Drawing Core v40: input -> stroke data -> renderer -> layer commit.
 function isTouchNavTarget(e){
@@ -162,11 +161,36 @@ function bindCanvas(c){}
 stage.addEventListener('pointerdown',begin);stage.addEventListener('pointermove',move);stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);
 function point(e){
   const rect = paper.getBoundingClientRect();
-  const px = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
-  const py = Math.min(Math.max(e.clientY - rect.top, 0), rect.height);
-  const x = (px / Math.max(1, rect.width)) * canvasW;
-  const y = (py / Math.max(1, rect.height)) * canvasH;
-  return {x, y, inside: x >= 0 && x <= canvasW && y >= 0 && y <= canvasH, p: e.pressure > 0 ? e.pressure : .5};
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const dx = e.clientX - centerX;
+  const dy = e.clientY - centerY;
+
+  const scale = Math.max(0.0001, zoom);
+  const radians = (-rotation * Math.PI) / 180;
+  const cos = Math.cos(radians);
+  const sin = Math.sin(radians);
+
+  // Convert screen-space pointer coordinates back into the paper's local
+  // coordinate system before applying the canvas size mapping. This keeps
+  // drawing aligned when the paper is rotated or flipped, including 180°.
+  const localX = (dx / scale) * cos - (dy / scale) * sin;
+  const localY = (dx / scale) * sin + (dy / scale) * cos;
+
+  const paperW = Math.max(1, paper.clientWidth);
+  const paperH = Math.max(1, paper.clientHeight);
+  const px = localX + paperW / 2;
+  const py = localY + paperH / 2;
+
+  const x = (px / paperW) * canvasW;
+  const y = (py / paperH) * canvasH;
+
+  return {
+    x: Math.min(Math.max(x, 0), canvasW),
+    y: Math.min(Math.max(y, 0), canvasH),
+    inside: x >= 0 && x <= canvasW && y >= 0 && y <= canvasH,
+    p: e.pressure > 0 ? e.pressure : .5
+  };
 }
 function fitPaper(){const maxW=Math.max(120,Math.min(stage.clientWidth-110,1050));const maxH=Math.max(120,stage.clientHeight-24);const k=Math.min(maxW/canvasW,maxH/canvasH);paper.style.width=Math.max(120,canvasW*k)+'px';paper.style.height=Math.max(120,canvasH*k)+'px';paper.style.transformOrigin='center center';applyTransform()}
 function applyTransform(){paper.style.transform=`translate(${panX}px,${panY}px) rotate(${rotation}deg) scale(${zoom})`}
@@ -259,7 +283,10 @@ function shouldMousePan(e){
 function begin(e){
   if(e.pointerType==='touch')return;
   if(shouldMousePan(e)){
+    e.preventDefault();
+    e.stopPropagation();
     mousePanState={pointerX:e.clientX,pointerY:e.clientY,panX,panY};
+    stage.setPointerCapture?.(e.pointerId);
     return;
   }
   if(e.target?.closest?.('.popup,.left-controls,button,input,select'))return;if(e.button!==undefined&&e.button!==0)return;
@@ -279,6 +306,7 @@ function begin(e){
 }
 function move(e){
   if(mousePanState && e.pointerType === 'mouse'){
+    e.preventDefault();
     panX=mousePanState.panX + (e.clientX - mousePanState.pointerX);
     panY=mousePanState.panY + (e.clientY - mousePanState.pointerY);
     applyTransform();
@@ -293,7 +321,9 @@ function move(e){
 }
 function end(e){
   if(mousePanState && e.pointerType === 'mouse'){
+    e.preventDefault();
     mousePanState = null;
+    stage.releasePointerCapture?.(e.pointerId);
     return;
   }
   if(!down)return;const l=layers[activeLayer];if(!l){down=false;return;}const q=point(e);down=false;
@@ -551,19 +581,6 @@ document.addEventListener('gesturestart',e=>{if(e.target?.closest?.('#stage'))e.
 document.addEventListener('gesturechange',e=>{if(e.target?.closest?.('#stage'))e.preventDefault()},{passive:false});
 document.addEventListener('gestureend',e=>{if(e.target?.closest?.('#stage'))e.preventDefault()},{passive:false});
 
-function downloadAppBundle(){
-  const html = document.documentElement.outerHTML;
-  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'artto_app.html';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 0);
-}
-
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredInstallPrompt = e;
@@ -572,7 +589,7 @@ window.addEventListener('beforeinstallprompt', e => {
 window.addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
   updateInstallButtonState();
-  status.textContent = 'App installed';
+  status.textContent = 'Artto installed';
 });
 if (installBtn) {
   installBtn.onclick = async () => {
@@ -580,30 +597,26 @@ if (installBtn) {
       deferredInstallPrompt.prompt();
       const result = await deferredInstallPrompt.userChoice;
       if (result.outcome === 'accepted') {
-        status.textContent = 'Shortcut installed';
+        status.textContent = 'Artto added to Home Screen';
       } else {
-        status.textContent = 'Install cancelled';
+        status.textContent = 'Artto install cancelled';
       }
       deferredInstallPrompt = null;
       updateInstallButtonState();
       return;
     }
     if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-      status.textContent = 'App already installed';
+      status.textContent = 'Artto already installed';
       return;
     }
-    status.textContent = 'Use browser menu → Add to Home Screen';
+    status.textContent = 'Use browser menu → Add Artto to Home Screen';
   };
-}
-
-if (downloadBtn) {
-  downloadBtn.onclick = downloadAppBundle;
 }
 
 function updateDocInfo(){if(docInfo)docInfo.textContent=`${docName} · ${canvasW} × ${canvasH}`;}
 function updateVersionInfo(){
   if (appVersion) {
-    appVersion.textContent = 'v51';
+    appVersion.textContent = 'v5.0.2';
     appVersion.title = 'Artto version';
   }
 }

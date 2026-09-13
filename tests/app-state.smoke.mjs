@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { App } from '../src/app/App.js';
+import { ViewportState } from '../src/core/ViewportState.js';
+import { screenToCanvasPoint } from '../src/input/PointerTransform.js';
 
 const app = new App();
 app.init();
@@ -21,5 +23,14 @@ const snapshot = app.state.document.snapshot();
 app.state.document.history.commit(snapshot);
 assert.ok(app.state.document.history.current(), 'History should record a committed snapshot');
 assert.equal(app.state.document.history.undoStack.length, 1, 'History should track undo entries');
+
+const viewport = new ViewportState({ zoom: 1, rotation: 180, panX: 0, panY: 0 });
+const rotated = screenToCanvasPoint(100, 100, viewport, { width: 200, height: 200 }, 1000, 1000);
+assert.ok(Math.abs(rotated.x - 900) < 1, '180° rotation should preserve x mapping across the rotated viewport');
+assert.ok(Math.abs(rotated.y - 900) < 1, '180° rotation should preserve y mapping across the rotated viewport');
+
+const normal = screenToCanvasPoint(100, 100, new ViewportState({ zoom: 1, rotation: 0 }), { width: 200, height: 200 }, 1000, 1000);
+assert.ok(Math.abs(normal.x - 500) < 1, 'Zero rotation should map to the same canvas coordinate as the midpoint region');
+assert.ok(Math.abs(normal.y - 500) < 1, 'Zero rotation should map to the same canvas coordinate as the midpoint region');
 
 console.log('smoke-ok');

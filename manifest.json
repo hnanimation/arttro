@@ -1,12 +1,13 @@
 {
   "name": "Artto",
   "short_name": "Artto",
+  "id": "artto-home-screen",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#101216",
   "theme_color": "#15171b",
-  "description": "Offline-first drawing and animation prototype",
+  "description": "Artto offline drawing and animation app",
   "icons": [
     {
       "src": "assets/icons/icon-192.svg",

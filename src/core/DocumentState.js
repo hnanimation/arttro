@@ -1,5 +1,6 @@
 import { SelectionState } from './SelectionState.js';
 import { HistoryState } from './HistoryState.js';
+import { ViewportState } from './ViewportState.js';
 
 export class DocumentState {
   constructor() {
@@ -7,6 +8,7 @@ export class DocumentState {
     this.activeLayer = 0;
     this.selection = new SelectionState();
     this.history = new HistoryState(30);
+    this.viewport = new ViewportState();
   }
 
   createLayer(config = {}) {
@@ -37,6 +39,11 @@ export class DocumentState {
     return this.selection.snapshot();
   }
 
+  setViewport(viewport) {
+    this.viewport = viewport instanceof ViewportState ? viewport : new ViewportState(viewport || {});
+    return this.viewport;
+  }
+
   clearSelection() {
     this.selection.clear();
   }
@@ -45,7 +52,8 @@ export class DocumentState {
     return JSON.parse(JSON.stringify({
       layers: this.layers,
       activeLayer: this.activeLayer,
-      selection: this.selection.snapshot()
+      selection: this.selection.snapshot(),
+      viewport: this.viewport.toJSON()
     }));
   }
 
