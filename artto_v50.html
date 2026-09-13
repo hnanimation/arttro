@@ -97,8 +97,13 @@ function updateInstallButtonState(){
 function applyTheme(theme){document.documentElement.dataset.theme=theme;themeBtn.title=theme==='dark'?'Switch to Light':'Switch to Dark';localStorage.setItem('canvas-theme',theme)}
 applyTheme(localStorage.getItem('canvas-theme')||'light');themeBtn.onclick=()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
 const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=18,op=1,eraserSize=18,eraserOp=1,col='#17181c',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
-let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null;const touchPointers=new Map();
+let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null,penActiveInSession=false;const touchPointers=new Map();
 // Drawing Core v40: input -> stroke data -> renderer -> layer commit.
+function isTouchNavTarget(e){
+  if(!e||!e.target||typeof e.target.closest !== 'function') return true;
+  const blockedSelectors='.popup,.left-controls,button,input,select,textarea,.sw,.layer,.brush-item';
+  return !e.target.closest(blockedSelectors);
+}
 let strokeRenderCanvas=null,strokeRenderCtx=null,strokePaintCanvas=null,strokePaintCtx=null,strokeBaseCanvas=null,strokeBaseCtx=null,strokePreviewCanvas=null,compositeCanvas=null,compositeCtx=null,strokeHasContent=false,currentStroke=null,strokePreviewLayer=null;
 function ensureStrokeCore(){
   const w=Math.max(1,Math.round(canvasW*d)),h=Math.max(1,Math.round(canvasH*d));
@@ -438,12 +443,23 @@ function beginPinch(){
   clearPopups();
 }
 function onTouchDown(e){
-  if(e.pointerType!=='touch'||!isTouchNavTarget(e))return;
+  if (e.pointerType === 'pen') {
+    penActiveInSession = true;
+    touchState = 'pen';
+    return;
+  }
+
+  if (e.pointerType !== 'touch' || !isTouchNavTarget(e)) return;
+  if (penActiveInSession) {
+    touchState = 'ignored';
+    return;
+  }
+
   e.preventDefault();
   touchPointers.set(e.pointerId,{clientX:e.clientX,clientY:e.clientY});
-  if(touchPointers.size===1){
+  if (touchPointers.size === 1) {
     beginPan(e);
-  }else if(touchPointers.size===2){
+  } else if (touchPointers.size === 2) {
     beginPinch();
   }
   updateDebugHUD();
@@ -471,15 +487,23 @@ function onTouchMove(e){
   updateDebugHUD();
 }
 function onTouchEnd(e){
-  if(e.pointerType!=='touch')return;
+  if (e.pointerType === 'pen') {
+    penActiveInSession = false;
+    touchState = 'idle';
+    return;
+  }
+
+  if (e.pointerType !== 'touch') return;
   touchPointers.delete(e.pointerId);
-  if(touchPointers.size===0){
-    touchState='idle';panStart=null;pinchAnchor=null;
-  }else if(touchPointers.size===1){
-    const p=[...touchPointers.values()][0];
-    // Rebase the remaining finger so the transition from pinch to pan does not jump.
-    panStart={pointerX:p.clientX,pointerY:p.clientY,panX,panY};
-    touchState='pan';pinchAnchor=null;
+  if (touchPointers.size === 0) {
+    touchState = 'idle';
+    panStart = null;
+    pinchAnchor = null;
+  } else if (touchPointers.size === 1) {
+    const p = [...touchPointers.values()][0];
+    panStart = { pointerX: p.clientX, pointerY: p.clientY, panX, panY };
+    touchState = 'pan';
+    pinchAnchor = null;
   }
   updateDebugHUD();
 }
