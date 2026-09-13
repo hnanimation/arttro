@@ -1,21 +1,47 @@
-MIT License
+Artto Contribution-Only License
 
 Copyright (c) 2026 hnanimation
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software and all associated source code, assets, documentation, design files, and project materials are the exclusive property of the official Artto project owner and are protected by copyright law.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This project is not open for general public use, commercial use, resale, redistribution, modification, or independent publication.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. NO COMMERCIAL USE
+   You may not use this software, in whole or in part, for any commercial purpose, including but not limited to sale, licensing, SaaS, subscriptions, paid hosting, advertising, support services, or any revenue-generating use.
+
+2. NO PRIVATE OR PUBLIC MODIFICATION
+   You may not copy, adapt, modify, translate, port, refactor, rebrand, repurpose, or create derivative works of this software for your own project, product, website, or device.
+
+3. NO REDISTRIBUTION OR FORKING
+   You may not publish, share, distribute, mirror, upload, clone, fork, re-host, or sell this software or any part of it in any public or private environment without explicit written permission from the copyright owner.
+
+4. NO INDEPENDENT RELEASES
+   You may not create a separate version, branch, release, package, build, app, or software product derived from this project unless the project owner explicitly grants written permission in advance.
+
+5. CONTRIBUTION ONLY
+   The only permitted form of participation is through the official project repository and only by submitting contributions to the maintainers for review.
+
+   Any submitted improvement, fix, design, script, or documentation must remain subject to the project owner’s review, approval, and ownership rights.
+
+6. NO SELF-ATTRIBUTION OR CLAIM OF OWNERSHIP
+   You may not claim ownership, authorship, branding, copyright, attribution, or commercial rights over this software, any derivative work, or any contribution submitted outside the official project workflow.
+
+7. NO USE OF CODE AS YOUR OWN WORK
+   You may not use this project as a base for your own project, portfolio, product, or personal codebase without explicit written permission from the copyright holder.
+
+8. NO COPYING INTO OTHER PROJECTS
+   You may not copy code, assets, or design structure from this project into any other project, product, or commercial service.
+
+9. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+10. LIMITATION OF LIABILITY
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+11. WRITTEN PERMISSION REQUIRED
+    Any use, contribution, adaptation, commercial activity, release, or distribution beyond the official project workflow requires prior written permission from the copyright owner.
+
+12. PROJECT OWNER CONTROL
+    All rights not expressly granted in this license are reserved exclusively to the project owner.
+
+This license is a contribution-only protection model intended to keep the project closed to commercial use and independent releases while allowing only official contributions accepted by the project owner.
