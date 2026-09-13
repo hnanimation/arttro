@@ -145,7 +145,28 @@ Checked the input logic in the app code and validated the smoke test for documen
 
 ---
 
-## 7) Recommended follow-up
+## 7) Problem: Brush and selection tools lost response after zoom or rotation
+Date: 2026-09-14
+
+### Symptoms
+- Brush strokes did not appear where the cursor was pressed.
+- Selection rectangles and lasso paths did not align with pointer movement.
+- The canvas looked visually rotated or zoomed, but interactions no longer matched the drawing surface.
+
+### Root cause
+The pointer mapping logic used screen-space math based on the untransformed paper size instead of the transformed paper bounds. Once zoom or rotation was applied, the input coordinates drifted away from the actual drawing plane and the tools effectively stopped responding.
+
+### Successful fix
+- Rebuilt the pointer conversion to invert the paper's zoom and rotation using the transformed bounding box.
+- Used the transformed paper width and height instead of the unscaled layout size.
+- Kept the coordinate conversion consistent for brush, eraser, selection, and lasso input.
+
+### Verification
+Confirmed through the project smoke test that the document state and rotated-point mapping remain valid after the fix.
+
+---
+
+## 8) Recommended follow-up
 - Keep this log updated when future bugs are found.
 - Always verify the live GitHub Pages URL after any manifest or service worker change.
 - For any future deployment issue, check in order:
@@ -154,4 +175,5 @@ Checked the input logic in the app code and validated the smoke test for documen
   3. app entry page
   4. asset paths and icons
   5. mouse input and navigation behavior
-  6. live browser verification
+  6. zoom and rotation pointer mapping checks
+  7. live browser verification

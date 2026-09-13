@@ -105,7 +105,10 @@ if ('serviceWorker' in navigator) {
   });
 }
 const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=7,op=1,eraserSize=7,eraserOp=1,col='#000000',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,rotation=0,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
-let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null,penActiveInSession=false;const touchPointers=new Map();
+let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null,penActiveInSession=false,navKeyActive=false;const touchPointers=new Map();
+window.addEventListener('keydown',e=>{if(e.code==='Space'){navKeyActive=true;e.preventDefault();}});
+window.addEventListener('keyup',e=>{if(e.code==='Space'){navKeyActive=false;}});
+window.addEventListener('blur',()=>{navKeyActive=false;});
 // Drawing Core v40: input -> stroke data -> renderer -> layer commit.
 function isTouchNavTarget(e){
   if(!e||!e.target||typeof e.target.closest !== 'function') return true;
@@ -161,29 +164,25 @@ function bindCanvas(c){}
 stage.addEventListener('pointerdown',begin);stage.addEventListener('pointermove',move);stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);
 function point(e){
   const rect = paper.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-  const dx = e.clientX - centerX;
-  const dy = e.clientY - centerY;
+  const paperW = Math.max(1, rect.width);
+  const paperH = Math.max(1, rect.height);
+  const nx = (e.clientX - rect.left) / paperW;
+  const ny = (e.clientY - rect.top) / paperH;
 
+  const centeredX = nx - 0.5;
+  const centeredY = ny - 0.5;
   const scale = Math.max(0.0001, zoom);
   const radians = (-rotation * Math.PI) / 180;
   const cos = Math.cos(radians);
   const sin = Math.sin(radians);
 
-  // Convert screen-space pointer coordinates back into the paper's local
-  // coordinate system before applying the canvas size mapping. This keeps
-  // drawing aligned when the paper is rotated or flipped, including 180°.
-  const localX = (dx / scale) * cos - (dy / scale) * sin;
-  const localY = (dx / scale) * sin + (dy / scale) * cos;
+  // Invert the zoom + rotation transform applied to the paper so pointer
+  // coordinates remain aligned with the drawing surface at any zoom or angle.
+  const localX = (centeredX / scale) * cos + (centeredY / scale) * sin;
+  const localY = -(centeredX / scale) * sin + (centeredY / scale) * cos;
 
-  const paperW = Math.max(1, paper.clientWidth);
-  const paperH = Math.max(1, paper.clientHeight);
-  const px = localX + paperW / 2;
-  const py = localY + paperH / 2;
-
-  const x = (px / paperW) * canvasW;
-  const y = (py / paperH) * canvasH;
+  const x = (localX + 0.5) * canvasW;
+  const y = (localY + 0.5) * canvasH;
 
   return {
     x: Math.min(Math.max(x, 0), canvasW),
@@ -278,7 +277,9 @@ function clearSelectionRegion(ctx,s,dx=0,dy=0){
   else ctx.rect((s.x+dx)*d,(s.y+dy)*d,s.w*d,s.h*d);ctx.fill();ctx.restore();
 }
 function shouldMousePan(e){
-  return e.pointerType === 'mouse' && (e.button === 1 || e.button === 2 || e.altKey || e.shiftKey || e.ctrlKey || e.metaKey);
+  if (e.pointerType !== 'mouse') return false;
+  if (e.button !== 0) return false;
+  return navKeyActive || e.altKey || e.shiftKey || e.ctrlKey || e.metaKey;
 }
 function begin(e){
   if(e.pointerType==='touch')return;
@@ -620,6 +621,6 @@ function updateVersionInfo(){
     appVersion.title = 'Artto version';
   }
 }
-function init(){try{loadSavedColors();activeLayer=makeLayer('Sketch');makeLayer('Line Art');ensureStrokeCore();renderComposite();renderLayers();updateControls();hue.value=hueVal;setColor();updateStatus();updateDocInfo();updateVersionInfo();document.title=docName;fitPaper();updateDebugHUD();if (installBtn) updateInstallButtonState();}catch(err){console.error('Canvas init failed:',err);status.textContent='Application startup error';}} if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+function init(){try{loadSavedColors();if(layers.length===0){activeLayer=makeLayer('Sketch');makeLayer('Line Art');}ensureStrokeCore();renderComposite();renderLayers();updateControls();hue.value=hueVal;setColor();updateStatus();updateDocInfo();updateVersionInfo();document.title=docName;fitPaper();updateDebugHUD();if (installBtn) updateInstallButtonState();}catch(err){console.error('Canvas init failed:',err);status.textContent='Application startup error';}} if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 </script></body></html>
 
