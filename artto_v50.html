@@ -158,6 +158,15 @@ function renderStrokeData(targetCtx,stroke,alphaOverride=null,composite='source-
   targetCtx.globalAlpha=1; targetCtx.globalCompositeOperation='source-over';
 }
 function renderStrokePreview(){if(!currentStroke||!strokePreviewCanvas||!strokePreviewLayer)return;const pc=strokePreviewCanvas.getContext('2d');pc.setTransform(1,0,0,1,0,0);pc.globalAlpha=1;pc.globalCompositeOperation='source-over';pc.clearRect(0,0,pc.canvas.width,pc.canvas.height);pc.drawImage(strokeBaseCanvas,0,0);if(currentStroke.points.length){if(currentStroke.tool==='eraser')renderStrokeData(pc,currentStroke,currentStroke.opacity,'destination-out');else renderStrokeData(pc,currentStroke,currentStroke.opacity,'source-over')}renderComposite(strokePreviewLayer,strokePreviewCanvas)}
+function resetInteractionState(){
+  down=false; last=null; operation=null; selected=null; mousePanState=null; strokeHasContent=false; currentStroke=null; strokePreviewLayer=null;
+  try {
+    if (typeof clearStrokeCore === 'function') clearStrokeCore();
+  } catch (err) {
+    console.warn('clearStrokeCore failed during state reset:', err);
+  }
+  hideSelection();
+}
 function makeLayer(name){const c=document.createElement('canvas');c.className='layerCanvas';paper.insertBefore(c,selectionBox);const ctx=c.getContext('2d');const l={name,canvas:c,ctx,visible:true,blend:'source-over',opacity:1};layers.push(l);resizeCanvas(c);bindCanvas(c);return layers.length-1}
 function resizeCanvas(c,preserve=false){const old=preserve?copy(c):null;const oldW=old?old.width:0,oldH=old?old.height:0;c.width=Math.max(1,Math.round(canvasW*d));c.height=Math.max(1,Math.round(canvasH*d));c.style.width='100%';c.style.height='100%';const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);x.imageSmoothingEnabled=true;if(old){const w=Math.min(oldW,c.width),h=Math.min(oldH,c.height);x.drawImage(old,0,0,w,h,0,0,w,h);}}
 function bindCanvas(c){}
@@ -205,6 +214,7 @@ function snapshot(){
 }
 function capture(){return{name:docName,width:canvasW,height:canvasH,activeLayer,selected:selected?JSON.parse(JSON.stringify(selected)):null,layers:layers.map(l=>({name:l.name,visible:l.visible,blend:l.blend,opacity:l.opacity,data:l.canvas.toDataURL('image/png')}))}}
 function restore(state){return new Promise(resolve=>{
+  resetInteractionState();
   layers.forEach(l=>l.canvas.remove());layers.length=0;
   docName=state.name||'Untitled';
   canvasW=Math.max(64,Math.min(8192,Math.round(Number(state.width)||canvasW)));
@@ -361,7 +371,9 @@ saveColor.onclick=()=>{const c=col.toLowerCase();lastColors=[c,...lastColors.fil
 document.querySelectorAll('[data-brush]').forEach(b=>b.onclick=()=>{brush=b.dataset.brush||'ink';document.querySelectorAll('[data-brush]').forEach(x=>x.classList.toggle('active',x===b));clearPopups();updateStatus()});
 
 document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>{const nextTool=b.dataset.tool;if(['select','lasso'].includes(nextTool)&&tool===nextTool){selected=null;operation=null;hideSelection();tool='brush';document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x.dataset.tool==='brush'));syncToolControls();updateStatus();clearPopups();return}tool=nextTool;document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x===b));if(!['select','lasso'].includes(tool)){selected=null;operation=null;hideSelection();}brush='ink';syncToolControls();updateStatus();clearPopups()});
-fillWhite.onclick=()=>{const l=layers[activeLayer];if(!l)return;snapshot();l.ctx.setTransform(d,0,0,d,0,0);l.ctx.globalAlpha=1;l.ctx.globalCompositeOperation='source-over';l.ctx.fillStyle='#fff';l.ctx.fillRect(0,0,canvasW,canvasH);renderComposite();updateStatus()};
+if (fillWhite) {
+  fillWhite.onclick=()=>{const l=layers[activeLayer];if(!l)return;snapshot();l.ctx.setTransform(d,0,0,d,0,0);l.ctx.globalAlpha=1;l.ctx.globalCompositeOperation='source-over';l.ctx.fillStyle='#fff';l.ctx.fillRect(0,0,canvasW,canvasH);renderComposite();updateStatus()};
+}
 clearCanvas.onclick=()=>{snapshot();layers.forEach(l=>{l.ctx.setTransform(d,0,0,d,0,0);l.ctx.clearRect(0,0,canvasW,canvasH)});selected=null;hideSelection();renderComposite();updateStatus()};
 undo.onclick=async()=>{if(!history.length)return;future.push(capture());const prev=history.pop();selected=null;hideSelection();await restore(prev);updateControls()};redo.onclick=async()=>{if(!future.length)return;history.push(capture());const next=future.pop();selected=null;hideSelection();await restore(next);updateControls()};
 applyResize.onclick=()=>{
