@@ -243,7 +243,22 @@ function restore(state){return new Promise(resolve=>{
   });
 })}
 function applyStyle(l){l.canvas.style.display='none';l.canvas.style.opacity='1';l.canvas.style.mixBlendMode='normal';renderComposite()}
-function renderComposite(previewLayer=null,previewCanvas=null){ensureStrokeCore();const c=compositeCtx;c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,c.canvas.width,c.canvas.height);c.fillStyle='#fff';c.fillRect(0,0,c.canvas.width,c.canvas.height);for(const l of layers){if(!l.visible)continue;c.globalAlpha=Math.max(0,Math.min(1,l.opacity));c.globalCompositeOperation=l.blend||'source-over';if(previewLayer===l&&previewCanvas)c.drawImage(previewCanvas,0,0);else c.drawImage(l.canvas,0,0)}c.globalAlpha=1;c.globalCompositeOperation='source-over'}
+function renderComposite(previewLayer=null,previewCanvas=null){
+  ensureStrokeCore();
+  const c=compositeCtx;
+  c.setTransform(1,0,0,1,0,0);
+  c.clearRect(0,0,c.canvas.width,c.canvas.height);
+
+  for(const l of layers){
+    if(!l.visible) continue;
+    const source = previewLayer===l && previewCanvas ? previewCanvas : l.canvas;
+    c.save();
+    c.globalAlpha = Math.max(0, Math.min(1, l.opacity ?? 1));
+    c.globalCompositeOperation = l.blend || 'source-over';
+    c.drawImage(source, 0, 0);
+    c.restore();
+  }
+}
 function renderLayers(){const box=document.getElementById('layers');box.innerHTML='';[...layers].reverse().forEach(l=>{const i=layers.indexOf(l),row=document.createElement('div');row.className='layer'+(i===activeLayer?' active':'');row.innerHTML=`<span aria-hidden="true">▤</span><span class="name">${esc(l.name)}</span><button class="eye" title="${l.visible?'Hide layer':'Show layer'}" aria-label="${l.visible?'Hide layer':'Show layer'}">${l.visible?'<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>':'<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18"/><path d="M10.6 5.2A10.8 10.8 0 0 1 12 5c6 0 9.5 7 9.5 7a16.7 16.7 0 0 1-3.1 3.9"/><path d="M6.2 6.2C3.9 7.8 2.5 12 2.5 12s3.5 7 9.5 7a10.8 10.8 0 0 0 2.7-.4"/></svg>'}</button>`;row.onclick=()=>{activeLayer=i;updateControls();renderLayers()};row.querySelector('.eye').onclick=e=>{e.stopPropagation();l.visible=!l.visible;applyStyle(l);renderLayers();renderComposite()};box.appendChild(row)})}
 function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function copy(c){const t=document.createElement('canvas');t.width=c.width;t.height=c.height;t.getContext('2d').drawImage(c,0,0);return t}
