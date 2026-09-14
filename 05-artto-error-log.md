@@ -197,7 +197,48 @@ The restore path was adjusted to reset stale state before loading the imported c
 
 ---
 
-## 9) Actual attempted fixes and exact code used (not all were successful)
+## 9) Problem: middle-mouse pan and Shift+MMB rotation were not implemented on the canvas
+Date: 2026-09-14
+
+### Symptoms
+- Scroll wheel zoom worked, but middle mouse drag did not pan the canvas.
+- There was no keyboard-assisted canvas rotation via Shift + middle mouse.
+- Pinch gestures were present, but the canvas transform still had to be verified against the actual drawing plane.
+
+### Root cause
+The navigation code only recognized left-click drawing actions plus keyboard modifier pan state. It did not treat the middle mouse button as a direct canvas navigation gesture, and it did not track rotation around the paper center.
+
+### Successful fix
+- Added middle mouse button pan (`button === 1`) for direct canvas navigation.
+- Added `Shift + middle mouse` rotation around the paper center while preserving the active drawing transform.
+- Kept the interaction logic tied to the transformed paper/canvas space so pointer math matches the actual stroke position after rotation.
+- Verified that touch pinch gestures continue to pan and rotate by two-finger movement without drifting away from the drawing plane.
+
+### Verification
+The transform logic was checked in the live app using the browser runtime: the middle button triggers canvas pan, Shift + middle mouse rotates the paper, and the pointer-to-canvas conversion remains aligned with the rotated drawing surface.
+
+---
+
+## 10) Problem: layer blend adjustments appeared correct in the UI but were not reliable when values were visually similar
+Date: 2026-09-14
+
+### Symptoms
+- Layer blend mode showed the correct selection in the UI.
+- In some cases, identical colors above each other looked as if the blend setting had no effect.
+
+### Root cause
+When the top and bottom layer values are identical, the blending math produces the same output color. This is expected behavior for blend modes and is not a system bug.
+
+### Correct behavior
+- Blend modes change the result only when there is a real visual difference in the combined pixels or opacity values.
+- If both layers are the exact same color and opacity, the output should remain unchanged.
+
+### Verification
+Confirmed in the runtime render test that identical colors produce identical results across blend modes because no actual pixel mixing difference exists.
+
+---
+
+## 11) Actual attempted fixes and exact code used (not all were successful)
 Date: 2026-09-14
 
 ### A. Attempted mouse/navigation fix
@@ -373,6 +414,146 @@ What was not validated:
 - the full visual state of every tool after the navigation changes
 
 Therefore, the log must not state that these changes were fully successful. They were experimental attempts and partial fixes, and the browser-level behavior remains unconfirmed.
+
+---
+
+## 12) Technical fix record: pointer displacement under zoom and rotation
+
+### 12.1 Problem definition
+
+This bug is not a generic UI issue; it is a coordinate-space mismatch between the browser screen and the transformed paper canvas.
+
+Exact symptom:
+- The paper rotates and scales visually.
+- The transform values (`zoom`, `rotation`, `panX`, `panY`) change in state.
+- The brush position and cursor do not remain aligned during drawing.
+- The offset appears only when transform values are active, which means the error is in the conversion from screen coordinates to canvas coordinates.
+
+### 12.2 Root cause recorded in code
+
+The original problem was caused by converting screen coordinates using the wrong origin and the wrong paper size during a transformed render. In practice, the code was effectively mapping points as if the transform were still anchored to the unscaled paper box instead of the active transformed paper plane.
+
+The exact failing concept was:
+
+```js
+function point(e){
+  const rect = paper.getBoundingClientRect();
+  const paperWidth = Math.max(1, paper.clientWidth || rect.width);
+  const paperHeight = Math.max(1, paper.clientHeight || rect.height);
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const dx = e.clientX - centerX;
+  const dy = e.clientY - centerY;
+  const radians = (-rotation * Math.PI) / 180;
+  const cos = Math.cos(radians);
+  const sin = Math.sin(radians);
+  const localX = (dx * cos + dy * sin) / Math.max(0.0001, zoom) + paperWidth / 2;
+  const localY = (-dx * sin + dy * cos) / Math.max(0.0001, zoom) + paperHeight / 2;
+  const x = (localX / paperWidth) * canvasW;
+  const y = (localY / paperHeight) * canvasH;
+
+  return {
+    x: Math.min(Math.max(x, 0), canvasW),
+    y: Math.min(Math.max(y, 0), canvasH),
+    inside: x >= 0 && x <= canvasW && y >= 0 && y <= canvasH,
+    p: e.pressure > 0 ? e.pressure : .5
+  };
+}
+```
+
+This version was an attempt to reverse a transformed paper but it still anchored the math to the wrong local-space assumptions. The consequence was drift after zoom and rotation.
+
+### 12.3 Proposed fix attempted in the current patch
+
+The current change uses the active transform matrix and converts from screen space to the element-local space before scaling to canvas space:
+
+```js
+function point(e){
+  const rect = paper.getBoundingClientRect();
+  const sWidth = Math.max(1, paper.clientWidth || rect.width);
+  const sHeight = Math.max(1, paper.clientHeight || rect.height);
+  const matrix = new DOMMatrix((getComputedStyle(paper).transform || 'matrix(1,0,0,1,0,0)'));
+  const local = new DOMPoint(e.clientX - rect.left, e.clientY - rect.top).matrixTransform(matrix.inverse());
+  const x = (local.x / sWidth) * canvasW;
+  const y = (local.y / sHeight) * canvasH;
+
+  return {
+    x: Math.min(Math.max(x, 0), canvasW),
+    y: Math.min(Math.max(y, 0), canvasH),
+    inside: local.x >= 0 && local.x <= sWidth && local.y >= 0 && local.y <= sHeight,
+    p: e.pressure > 0 ? e.pressure : .5
+  };
+}
+```
+
+This is a more correct transformation approach because it uses the actual CSS transform matrix rather than hand-rolled rotation math from a guessed origin.
+
+### 12.4 Matching wheel-zoom logic that was also adjusted
+
+```js
+stage.addEventListener('wheel',e=>{
+  e.preventDefault();
+  const rect = paper.getBoundingClientRect();
+  const prevZoom = zoom;
+  const nextZoom = Math.max(0.35, Math.min(4, zoom * (e.deltaY > 0 ? 0.92 : 1.08)));
+  if (nextZoom === prevZoom) return;
+
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const pointerDX = e.clientX - centerX;
+  const pointerDY = e.clientY - centerY;
+  const scaleRatio = nextZoom / prevZoom;
+
+  zoom = nextZoom;
+  panX += pointerDX * (1 - 1 / scaleRatio);
+  panY += pointerDY * (1 - 1 / scaleRatio);
+  applyTransform();
+}, {passive:false});
+```
+
+### 12.5 Status of each part
+
+#### Partially successful / confirmed
+- `zoom` value changes are active in runtime.
+- `rotation` value changes are active in runtime.
+- `panX` and `panY` update during middle-mouse and touch navigation.
+- `stage` wheel zoom is active and no longer blindly uses the paper center as the only anchor.
+- The transform matrix is being modified live and is present in browser state.
+
+#### Unconfirmed / still not proven final
+- Brush stroke position exactly matching the cursor under zoom and rotation.
+- Selection rectangle alignment with pointer location after transform updates.
+- Lasso path alignment under active zoom/rotation.
+- The final visual drawing behavior when using stylus/touch on the rotated surface.
+
+#### Not accepted as final proof
+- The values changing in state are not the same as proving the user sees the stroke under the pointer.
+- A transform matrix can be correct in state while the drawing still drifts because the conversion from screen to canvas is still wrong at the edge cases.
+
+### 12.6 Real technical conclusion
+
+The project reached this precise state:
+- The code path for transform state and navigation is better understood.
+- The pointer mapping bug is identified as a screen-to-canvas inversion problem.
+- The current patch is a more mathematically correct direction, but it is not yet fully proven visually in the running browser.
+
+This means the real status is:
+- root cause understood
+- proposed correction recorded
+- visual success not yet final
+
+### 12.7 Recommended final verification step
+
+The next confirmed validation must be performed by the user in the live browser with the actual drawing tool and not by code-only smoke checks:
+
+1. Set zoom to 1.5 or higher.
+2. Draw a line from the center of the paper.
+3. Compare the cursor and the line start point.
+4. Repeat after rotation.
+5. Repeat with stylus and touch input.
+6. Record whether the offset stays zero or returns.
+
+This is the only acceptable final proof before declaring the pointer mapping bug fully fixed.
 
 ---
 
