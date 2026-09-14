@@ -171,19 +171,44 @@ function makeLayer(name){const c=document.createElement('canvas');c.className='l
 function resizeCanvas(c,preserve=false){const old=preserve?copy(c):null;const oldW=old?old.width:0,oldH=old?old.height:0;c.width=Math.max(1,Math.round(canvasW*d));c.height=Math.max(1,Math.round(canvasH*d));c.style.width='100%';c.style.height='100%';const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);x.imageSmoothingEnabled=true;if(old){const w=Math.min(oldW,c.width),h=Math.min(oldH,c.height);x.drawImage(old,0,0,w,h,0,0,w,h);}}
 function bindCanvas(c){}
 stage.addEventListener('pointerdown',begin);stage.addEventListener('pointermove',move);stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);
-function point(e){
-  const rect = paper.getBoundingClientRect();
-  const sWidth = Math.max(1, paper.clientWidth || rect.width);
-  const sHeight = Math.max(1, paper.clientHeight || rect.height);
-  const matrix = new DOMMatrix((getComputedStyle(paper).transform || 'matrix(1,0,0,1,0,0)'));
-  const local = new DOMPoint(e.clientX - rect.left, e.clientY - rect.top).matrixTransform(matrix.inverse());
-  const x = (local.x / sWidth) * canvasW;
-  const y = (local.y / sHeight) * canvasH;
+function calcPointerFromZoomRotation(screenX, screenY, paperCenterX, paperCenterY, paperWidth, paperHeight, angleDeg, zoomLevel){
+  const angleRad = (angleDeg * Math.PI) / 180;
+  const cos = Math.cos(angleRad);
+  const sin = Math.sin(angleRad);
+  const dx = screenX - paperCenterX;
+  const dy = screenY - paperCenterY;
+  const invScale = 1 / Math.max(0.0001, zoomLevel);
+  const localX = (dx * cos + dy * sin) * invScale + (paperWidth / 2);
+  const localY = (-dx * sin + dy * cos) * invScale + (paperHeight / 2);
 
   return {
-    x: Math.min(Math.max(x, 0), canvasW),
-    y: Math.min(Math.max(y, 0), canvasH),
-    inside: local.x >= 0 && local.x <= sWidth && local.y >= 0 && local.y <= sHeight,
+    localX,
+    localY,
+    canvasX: (localX / Math.max(1, paperWidth)) * canvasW,
+    canvasY: (localY / Math.max(1, paperHeight)) * canvasH
+  };
+}
+function point(e){
+  const rect = paper.getBoundingClientRect();
+  const paperCenterX = rect.left + rect.width / 2;
+  const paperCenterY = rect.top + rect.height / 2;
+  const paperWidth = paper.clientWidth || paper.offsetWidth || rect.width;
+  const paperHeight = paper.clientHeight || paper.offsetHeight || rect.height;
+  const {canvasX, canvasY, localX, localY} = calcPointerFromZoomRotation(
+    e.clientX,
+    e.clientY,
+    paperCenterX,
+    paperCenterY,
+    paperWidth,
+    paperHeight,
+    rotation,
+    zoom
+  );
+
+  return {
+    x: Math.min(Math.max(canvasX, 0), canvasW),
+    y: Math.min(Math.max(canvasY, 0), canvasH),
+    inside: localX >= 0 && localX <= paperWidth && localY >= 0 && localY <= paperHeight,
     p: e.pressure > 0 ? e.pressure : .5
   };
 }
