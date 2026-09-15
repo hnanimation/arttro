@@ -1,6 +1,6 @@
 <!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#15171b"><link rel="manifest" href="./manifest.json"><title>Artto v5.0.2</title>
 <style>
-*{box-sizing:border-box;-webkit-user-select:none;user-select:none}html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;font-family:system-ui,sans-serif;background:#101216;color:#eee}.app{height:100vh;display:grid;grid-template-columns:72px 1fr;grid-template-rows:58px 1fr 42px}.top{grid-column:1/3;display:flex;align-items:center;gap:7px;padding:7px 10px;background:#191b20;border-bottom:1px solid #2b2e35;direction:ltr}.top .brand{margin-left:auto;margin-right:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw;direction:ltr;font-weight:800;font-size:14px}.top button{height:42px;min-width:42px}.action,.tool{border:1px solid #343840;background:#23262c;color:#eee;border-radius:10px;cursor:pointer}.action:hover,.tool:hover,.tool.active{background:#363b44}.top .tool{font-size:20px}.top .label{font-size:11px;opacity:.65;padding:0 3px}.install-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;min-width:92px}.install-btn .install-text{font-size:12px;font-weight:700;letter-spacing:.03em}.install-btn:disabled{opacity:.55;cursor:not-allowed}.stage{grid-column:1/3;position:relative;overflow:hidden;background:#0b0d10;display:flex;align-items:center;justify-content:center;touch-action:none}.paper{position:relative;isolation:isolate;width:min(82vw,1050px);height:min(78vh,760px);min-width:120px;min-height:120px;background:#fff;box-shadow:0 18px 60px #0009;overflow:hidden;transform-origin:center center}.layerCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;pointer-events:none}.selection{position:absolute;border:1px dashed #111;outline:1px solid #fff;pointer-events:none;display:none;z-index:100}.selection-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none;z-index:101;overflow:visible}.selection-outline polyline{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:7 5;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 1px #fff)}.left-controls{position:absolute;left:0;top:0;bottom:0;width:58px;background:#191b20;border-right:1px solid #2b2e35;display:flex;flex-direction:column;align-items:center;padding:12px 4px;gap:10px;z-index:300}.vcontrol{position:relative;height:42%;min-height:150px;max-height:330px;width:46px;display:flex;align-items:center;justify-content:center}.vcontrol input{width:160px;transform:rotate(-90deg);accent-color:#ddd}.vnum{position:absolute;right:-2px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:10px;white-space:nowrap;color:#ddd;pointer-events:none}.vlabel{font-size:10px;opacity:.55;position:absolute;bottom:5px;writing-mode:vertical-rl;transform:rotate(180deg)}.bottom{grid-column:1/3;background:#191b20;border-top:1px solid #2b2e35;display:flex;align-items:center;padding:5px 10px;gap:8px;font-size:11px}.spacer{flex:1}.status{opacity:.65}.popup{position:absolute;top:0;left:58px;right:auto;background:#1b1e24;border:1px solid #3a3e46;border-radius:12px;box-shadow:0 15px 45px #000b;z-index:1000;display:none}.popup.open{display:block}.layers{width:300px;padding:12px}.colors{width:340px;padding:14px}.brushes{width:260px;padding:12px}.resize{width:270px;padding:14px}.section-title{font-size:12px;opacity:.65;margin-bottom:10px}.layer{padding:9px;background:#24272e;border-radius:8px;margin:5px 0;display:flex;gap:8px;align-items:center;cursor:pointer}.layer.active{outline:1px solid #aaa}.layer .eye{margin-right:auto;background:none;border:0;color:var(--text);cursor:pointer;width:30px;height:30px;padding:3px;display:flex;align-items:center;justify-content:center}.layer .eye .icon{width:20px;height:20px}.layer .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row{display:flex;align-items:center;gap:8px;margin:9px 0}.row label{flex:1;font-size:12px}.popup select,.popup input[type=text],.popup input[type=number]{background:#24272e;color:#fff;border:1px solid #3a3e46;border-radius:7px;padding:7px}.popup input[type=number]{width:100px}.group{display:flex;gap:6px;flex-wrap:wrap}.swatches{display:flex;gap:7px;flex-wrap:wrap}.sw{width:28px;height:28px;border-radius:7px;border:2px solid #444;cursor:pointer}.colorSquare{height:190px;border-radius:8px;position:relative;overflow:hidden;cursor:crosshair;background:linear-gradient(to bottom,transparent,#000),linear-gradient(to right,#fff,#f00)}.colorPointer{position:absolute;width:14px;height:14px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 1px #000;transform:translate(-50%,-50%);pointer-events:none}.hue{width:100%;height:18px;margin-top:10px;border-radius:9px;appearance:none;background:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00);cursor:pointer}.hue::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #222}.colorInfo{display:flex;align-items:center;gap:8px;margin-top:9px}.current{width:32px;height:32px;border-radius:50%;border:1px solid #555;margin:0}.hex{font-family:monospace;font-size:12px}.saveColor{margin-right:auto}.brush-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;cursor:pointer}.brush-item:hover,.brush-item.active{background:#343942}.brush-preview{width:46px;height:30px;display:flex;align-items:center}.brush-preview i{display:block;width:40px;height:2px;background:#eee;border-radius:99px}.brush-item:nth-child(3) .brush-preview i{height:1px}.brush-item:nth-child(4) .brush-preview i{height:9px;opacity:.65}.brush-item:nth-child(5) .brush-preview i{height:14px}.brush-item:nth-child(6) .brush-preview i{height:4px}.muted{font-size:10px;opacity:.55}.icon{font-size:20px;line-height:1}.hidden{display:none!important}
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none}html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;font-family:system-ui,sans-serif;background:#101216;color:#eee}html{touch-action:manipulation}.app{height:100vh;display:grid;grid-template-columns:72px 1fr;grid-template-rows:58px 1fr 42px}.top{grid-column:1/3;display:flex;align-items:center;gap:7px;padding:7px 10px;background:#191b20;border-bottom:1px solid #2b2e35;direction:ltr;touch-action:pan-x pan-y}.top .brand{margin-left:auto;margin-right:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw;direction:ltr;font-weight:800;font-size:14px}.top button{height:42px;min-width:42px}.action,.tool{border:1px solid #343840;background:#23262c;color:#eee;border-radius:10px;cursor:pointer;touch-action:manipulation}.action:hover,.tool:hover,.tool.active{background:#363b44}@media (hover:hover){.action[title]:hover::after,.tool[title]:hover::after{content:attr(title);position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#000c;color:#fff;padding:4px 8px;border-radius:6px;font-size:11px;white-space:nowrap;pointer-events:none;z-index:9999;margin-top:6px}}.top .tool{font-size:20px}.top .label{font-size:11px;opacity:.65;padding:0 3px}.install-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;min-width:92px}.install-btn .install-text{font-size:12px;font-weight:700;letter-spacing:.03em}.install-btn:disabled{opacity:.55;cursor:not-allowed}.stage{grid-column:1/3;position:relative;overflow:hidden;background:#0b0d10;display:flex;align-items:center;justify-content:center;touch-action:none}.paper{position:relative;isolation:isolate;width:min(82vw,1050px);height:min(78vh,760px);min-width:120px;min-height:120px;background:#fff;box-shadow:0 18px 60px #0009;overflow:hidden;transform-origin:center center}.layerCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;pointer-events:none}.selection{position:absolute;border:1px dashed #111;outline:1px solid #fff;pointer-events:none;display:none;z-index:100}.selection-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none;z-index:101;overflow:visible}.selection-outline polyline{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:7 5;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 1px #fff)}.left-controls{position:absolute;left:0;top:0;bottom:0;width:58px;background:#191b20;border-right:1px solid #2b2e35;display:flex;flex-direction:column;align-items:center;padding:12px 4px;gap:10px;z-index:300;touch-action:pan-x pan-y}.vcontrol{position:relative;height:42%;min-height:150px;max-height:330px;width:46px;display:flex;align-items:center;justify-content:center}.vcontrol input{width:160px;transform:rotate(-90deg);accent-color:#ddd}.vnum{position:absolute;right:-2px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:10px;white-space:nowrap;color:#ddd;pointer-events:none}.vlabel{font-size:10px;opacity:.55;position:absolute;bottom:5px;writing-mode:vertical-rl;transform:rotate(180deg)}.bottom{grid-column:1/3;background:#191b20;border-top:1px solid #2b2e35;display:flex;align-items:center;padding:5px 10px;gap:8px;font-size:11px;touch-action:pan-x pan-y}.spacer{flex:1}.status{opacity:.65}.popup{position:absolute;top:0;left:58px;right:auto;background:#1b1e24;border:1px solid #3a3e46;border-radius:12px;box-shadow:0 15px 45px #000b;z-index:1000;display:none}.popup.open{display:block}.layers{width:300px;padding:12px}.colors{width:340px;padding:14px}.brushes{width:260px;padding:12px}.resize{width:270px;padding:14px}.section-title{font-size:12px;opacity:.65;margin-bottom:10px}.layer{padding:9px;background:#24272e;border-radius:8px;margin:5px 0;display:flex;gap:8px;align-items:center;cursor:pointer}.layer.active{outline:1px solid #aaa}.layer .eye{margin-right:auto;background:none;border:0;color:var(--text);cursor:pointer;width:30px;height:30px;padding:3px;display:flex;align-items:center;justify-content:center}.layer .eye .icon{width:20px;height:20px}.layer .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row{display:flex;align-items:center;gap:8px;margin:9px 0}.row label{flex:1;font-size:12px}.popup select,.popup input[type=text],.popup input[type=number]{background:#24272e;color:#fff;border:1px solid #3a3e46;border-radius:7px;padding:7px}.popup input[type=number]{width:100px}.group{display:flex;gap:6px;flex-wrap:wrap}.swatches{display:flex;gap:7px;flex-wrap:wrap}.sw{width:28px;height:28px;border-radius:7px;border:2px solid #444;cursor:pointer}.colorSquare{height:190px;border-radius:8px;position:relative;overflow:hidden;cursor:crosshair;background:linear-gradient(to bottom,transparent,#000),linear-gradient(to right,#fff,#f00)}.colorPointer{position:absolute;width:14px;height:14px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 1px #000;transform:translate(-50%,-50%);pointer-events:none}.hue{width:100%;height:18px;margin-top:10px;border-radius:9px;appearance:none;background:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00);cursor:pointer}.hue::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #222}.colorInfo{display:flex;align-items:center;gap:8px;margin-top:9px}.current{width:32px;height:32px;border-radius:50%;border:1px solid #555;margin:0}.hex{font-family:monospace;font-size:12px}.saveColor{margin-right:auto}.brush-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;cursor:pointer}.brush-item:hover,.brush-item.active{background:#343942}.brush-preview{width:46px;height:30px;display:flex;align-items:center}.brush-preview i{display:block;width:40px;height:2px;background:#eee;border-radius:99px}.brush-item:nth-child(3) .brush-preview i{height:1px}.brush-item:nth-child(4) .brush-preview i{height:9px;opacity:.65}.brush-item:nth-child(5) .brush-preview i{height:14px}.brush-item:nth-child(6) .brush-preview i{height:4px}.muted{font-size:10px;opacity:.55}.icon{font-size:20px;line-height:1}.hidden{display:none!important}
 @media(max-width:800px){.top{gap:4px}.top .brand{display:none}.top button{min-width:38px}.left-controls{width:62px}.app{grid-template-columns:62px 1fr}.paper{width:82vw;height:75vh}.popup{left:0;right:auto;max-width:calc(100vw - 10px)}}
 #debugHUD{position:fixed;top:10px;right:10px;z-index:9999;background:rgba(0,0,0,.82);color:#00ff66;padding:9px 11px;border:1px solid rgba(0,255,102,.35);border-radius:7px;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;pointer-events:none;white-space:nowrap}
 
@@ -106,6 +106,104 @@ if ('serviceWorker' in navigator) {
 }
 const fillWhite=document.getElementById('fillWhite'),clearCanvas=document.getElementById('clearCanvas');const sizeEl2=sizeEl,opacityEl2=opacityEl;let d=1,tool='brush',brush='ink',size=7,op=1,eraserSize=7,eraserOp=1,col='#000000',activeLayer=0,down=false,last=null,operation=null,selected=null,docName='Untitled',zoom=1,rotation=0,panX=0,panY=0,canvasW=2048,canvasH=1536;const layers=[],history=[],future=[];let lastColors=[];
 let touchState='idle',panStart=null,pinchAnchor=null,mousePanState=null,penActiveInSession=false,navKeyActive=false;const touchPointers=new Map();
+// v5.0.3: IndexedDB + Autosave + Session restore
+const DB_NAME='artto',DB_VERSION=1,DB_STORE='projects',PROJECT_ID='current';
+function openDB(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open(DB_NAME,DB_VERSION);
+    req.onupgradeneeded=e=>{
+      const db=e.target.result;
+      if(!db.objectStoreNames.contains(DB_STORE))db.createObjectStore(DB_STORE,{keyPath:'id'});
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function idbPut(project){
+  const db=await openDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(DB_STORE,'readwrite');
+    tx.objectStore(DB_STORE).put(project);
+    tx.oncomplete=()=>{db.close();resolve();};
+    tx.onerror=()=>{db.close();reject(tx.error);};
+  });
+}
+async function idbGet(id){
+  const db=await openDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(DB_STORE,'readonly');
+    const req=tx.objectStore(DB_STORE).get(id);
+    req.onsuccess=()=>{db.close();resolve(req.result);};
+    req.onerror=()=>{db.close();reject(req.error);};
+  });
+}
+function blobFromCanvas(canvas){
+  return new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+}
+async function captureAsBlobs(){
+  const layerData=await Promise.all(layers.map(async l=>({
+    name:l.name,
+    visible:l.visible,
+    blend:l.blend,
+    opacity:l.opacity,
+    blob:await blobFromCanvas(l.canvas)
+  })));
+  return {
+    id:PROJECT_ID,
+    name:docName,
+    width:canvasW,
+    height:canvasH,
+    activeLayer,
+    updatedAt:Date.now(),
+    layers:layerData
+  };
+}
+async function restoreFromBlobs(project){
+  const state={
+    name:project.name,
+    width:project.width,
+    height:project.height,
+    activeLayer:project.activeLayer,
+    selected:null,
+    layers:project.layers.map(l=>({
+      name:l.name,
+      visible:l.visible,
+      blend:l.blend,
+      opacity:l.opacity,
+      data:URL.createObjectURL(l.blob)
+    }))
+  };
+  await restore(state);
+  setTimeout(()=>{
+    state.layers.forEach(l=>{
+      try{URL.revokeObjectURL(l.data)}catch(e){}
+    });
+  },15000);
+}
+let autosaveTimer=null;
+function scheduleAutosave(){
+  if(autosaveTimer)clearTimeout(autosaveTimer);
+  autosaveTimer=setTimeout(async()=>{
+    try{
+      const project=await captureAsBlobs();
+      await idbPut(project);
+      status.textContent='Saved locally · '+new Date().toLocaleTimeString();
+    }catch(e){
+      console.warn('Autosave failed:',e);
+    }
+  },3000);
+}
+async function tryRestoreSession(){
+  try{
+    const project=await idbGet(PROJECT_ID);
+    if(!project||!Array.isArray(project.layers)||project.layers.length===0)return false;
+    await restoreFromBlobs(project);
+    return true;
+  }catch(e){
+    console.warn('Session restore failed:',e);
+    return false;
+  }
+}
 window.addEventListener('keydown',e=>{if(e.code==='Space'){navKeyActive=true;e.preventDefault();}});
 window.addEventListener('keyup',e=>{if(e.code==='Space'){navKeyActive=false;}});
 window.addEventListener('blur',()=>{navKeyActive=false;});
@@ -141,7 +239,7 @@ function renderStrokeData(targetCtx,stroke,alphaOverride=null,composite='source-
   for(const pt of stroke.points){
     if(!pt){prev=null;continue}
     const pressure=Math.max(0,Math.min(1,Number.isFinite(pt.p)?pt.p:.5));
-    mask.lineWidth=stroke.size*(.5+.5*pressure);
+    mask.lineWidth=stroke.size*(.2+.8*pressure);
     mask.beginPath();
     if(prev){mask.moveTo(prev.x,prev.y);mask.lineTo(pt.x,pt.y)}else{mask.moveTo(pt.x,pt.y);mask.lineTo(pt.x,pt.y)}
     mask.stroke(); prev=pt;
@@ -152,12 +250,12 @@ function renderStrokeData(targetCtx,stroke,alphaOverride=null,composite='source-
   paint.globalCompositeOperation='destination-in'; paint.drawImage(mask.canvas,0,0);
   paint.globalCompositeOperation='source-over';
   targetCtx.setTransform(1,0,0,1,0,0); targetCtx.globalAlpha=alphaOverride===null?stroke.opacity:alphaOverride; targetCtx.globalCompositeOperation=composite;
-  if(selected&&stroke&&(stroke.tool==='brush'||stroke.tool==='eraser')){
-    targetCtx.save(); targetCtx.beginPath(); targetCtx.rect(selected.x,selected.y,selected.w,selected.h); targetCtx.clip(); targetCtx.drawImage(paint.canvas,0,0); targetCtx.restore();
+  if(selected){
+    targetCtx.save(); clipSelection(targetCtx,selected); targetCtx.drawImage(paint.canvas,0,0); targetCtx.restore();
   }else targetCtx.drawImage(paint.canvas,0,0);
   targetCtx.globalAlpha=1; targetCtx.globalCompositeOperation='source-over';
 }
-function renderStrokePreview(){if(!currentStroke||!strokePreviewCanvas||!strokePreviewLayer)return;const pc=strokePreviewCanvas.getContext('2d');pc.setTransform(1,0,0,1,0,0);pc.globalAlpha=1;pc.globalCompositeOperation='source-over';pc.clearRect(0,0,pc.canvas.width,pc.canvas.height);pc.drawImage(strokeBaseCanvas,0,0);if(currentStroke.points.length){if(currentStroke.tool==='eraser')renderStrokeData(pc,currentStroke,currentStroke.opacity,'destination-out');else renderStrokeData(pc,currentStroke,currentStroke.opacity,'source-over')}renderComposite(strokePreviewLayer,strokePreviewCanvas)}
+function renderStrokePreview(){if(!currentStroke||!strokePreviewCanvas||!strokePreviewLayer)return;const pc=strokePreviewCanvas.getContext('2d');pc.setTransform(1,0,0,1,0,0);pc.globalAlpha=1;pc.globalCompositeOperation='source-over';pc.clearRect(0,0,pc.canvas.width,pc.canvas.height);pc.drawImage(strokePreviewLayer.canvas,0,0);if(currentStroke.points.length){if(currentStroke.tool==='eraser')renderStrokeData(pc,currentStroke,currentStroke.opacity,'destination-out');else renderStrokeData(pc,currentStroke,currentStroke.opacity,'source-over')}renderComposite(strokePreviewLayer,strokePreviewCanvas)}
 function resetInteractionState(){
   down=false; last=null; operation=null; selected=null; mousePanState=null; strokeHasContent=false; currentStroke=null; strokePreviewLayer=null;
   try {
@@ -354,7 +452,7 @@ function begin(e){
   const l=layers[activeLayer];if(!l){down=false;return;}
   const q=point(e);if(!q.inside&&!['brush','eraser'].includes(tool))return;down=true;last=q;e.currentTarget.setPointerCapture?.(e.pointerId);
   if(tool==='brush'||tool==='eraser'){beginStrokePreview();if(q.inside){currentStroke.points.push({x:q.x,y:q.y,p:q.p});strokeHasContent=true}else currentStroke.points.push(null);renderStrokePreview();return}
-  if(tool==='fill'){if(q.inside){snapshot();floodFill(l.ctx,q.x,q.y,col);renderComposite();}down=false;updateStatus();return}
+  if(tool==='fill'){if(q.inside){snapshot();floodFill(l.ctx,q.x,q.y,col);renderComposite();}down=false;updateStatus();scheduleAutosave();return}
   if(tool==='move'){if(!q.inside)return;snapshot();operation={type:'move',x:q.x,y:q.y,temp:copy(l.canvas)};return}
   if(tool==='select'||tool==='lasso'){
     if(!q.inside){down=false;return}
@@ -395,10 +493,10 @@ function end(e){
   }
   if(!down)return;const l=layers[activeLayer];if(!l){down=false;return;}const q=point(e);down=false;
   if((tool==='brush'||tool==='eraser')&&strokeHasContent&&currentStroke){snapshot();l.ctx.setTransform(1,0,0,1,0,0);l.ctx.globalAlpha=1;l.ctx.globalCompositeOperation='source-over';l.ctx.clearRect(0,0,l.canvas.width,l.canvas.height);l.ctx.drawImage(strokeBaseCanvas,0,0);renderStrokeData(l.ctx,currentStroke,currentStroke.opacity,currentStroke.tool==='eraser'?'destination-out':'source-over');}
-  if(operation?.type==='rect'){const x=Math.round(Math.min(operation.x,q.x)),y=Math.round(Math.min(operation.y,q.y)),w=Math.round(Math.abs(q.x-operation.x)),h=Math.round(Math.abs(q.y-operation.y));selected=w>=3&&h>=3?{kind:'rect',x,y,w,h}:null;if(selected)setSelectionBox(selected);else hideSelection();}
+  if(operation?.type==='rect'){const x=Math.round(Math.min(operation.x,q.x)),y=Math.round(Math.min(operation.y,q.y)),w=Math.round(Math.abs(q.x-operation.x)),h=Math.round(Math.abs(q.y-operation.y));selected=w>=3&&h>=3?{kind:'rect',x,y,w,h}:null;if(selected)setSelectionBox(selected);else hideSelection();if(selected)snapshot();}
   else if(operation?.type==='lasso'){const p=operation.path;if(p.length>=3){const xs=p.map(a=>a.x),ys=p.map(a=>a.y);const x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y;if(w>=3&&h>=3){selected={kind:'lasso',x,y,w,h,path:p};setSelectionBox(selected);}else{selected=null;hideSelection();}}else{selected=null;hideSelection();}}
   else if(operation?.type==='selmove'){const dx=Math.round(q.x-operation.x),dy=Math.round(q.y-operation.y);selected={...operation.s,x:Math.round(operation.s.x+dx),y:Math.round(operation.s.y+dy)};if(selected.kind==='lasso')selected.path=operation.s.path.map(p=>({x:Math.round(p.x+dx),y:Math.round(p.y+dy)}));setSelectionBox(selected)}
-  operation=null;last=null;clearStrokeCore();renderComposite();l.ctx.globalAlpha=1;l.ctx.globalCompositeOperation='source-over';updateStatus();
+ operation=null;last=null;clearStrokeCore();renderComposite();l.ctx.globalAlpha=1;l.ctx.globalCompositeOperation='source-over';updateStatus();scheduleAutosave();
 }
 function updateControls(){const l=layers[activeLayer];if(!l)return;blend.value=l.blend;layerOpacity.value=Math.round(l.opacity*100);lv.textContent=Math.round(l.opacity*100)+'%'}function updateStatus(){status.textContent=`${brush[0].toUpperCase()+brush.slice(1)} · Layer: ${layers[activeLayer]?.name||''}`}
 function clearPopups(except){document.querySelectorAll('.popup.open').forEach(p=>{if(p!==except)p.classList.remove('open')})}function toggle(id){const p=document.getElementById(id),open=!p.classList.contains('open');clearPopups();if(open)p.classList.add('open')}
@@ -419,14 +517,53 @@ document.addEventListener('pointerdown',e=>{const t=e.target;if(t?.closest?.('.p
 document.getElementById('threeD').onclick=()=>window.open('https://posemy.art/app/?lang=en','_blank','noopener');
 rename.onclick=()=>{const n=prompt('Project name:',docName);if(n?.trim()){docName=n.trim();document.title=docName;updateDocInfo()}};
 
-save.onclick=()=>{const blob=new Blob([JSON.stringify(capture())],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(docName||'Untitled')+'.canvas.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),0)};
+save.onclick=async()=>{
+  // Save to IndexedDB first (fast, local, no download dialog)
+  try{
+    const project=await captureAsBlobs();
+    await idbPut(project);
+    status.textContent='Saved locally · '+new Date().toLocaleTimeString();
+  }catch(e){
+    console.warn('Local save failed:',e);
+    status.textContent='Local save failed';
+  }
+  // Also download JSON (portable backup)
+  try{
+    const blob=new Blob([JSON.stringify(capture())],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download=(docName||'Untitled')+'.canvas.json';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),0);
+  }catch(e){
+    console.warn('JSON export failed:',e);
+  }
+};
 load.onclick=()=>{const i=document.createElement('input');i.type='file';i.accept='.json,application/json';i.onchange=()=>{const f=i.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{restore(JSON.parse(r.result))}catch(err){console.error('Open project failed:',err);alert('Could not open this project file.')}};r.readAsText(f)};i.click()};
 exportPng.onclick=()=>{ensureStrokeCore();renderComposite();const out=document.createElement('canvas');out.width=Math.max(1,Math.round(canvasW*d));out.height=Math.max(1,Math.round(canvasH*d));const c=out.getContext('2d');c.drawImage(compositeCanvas,0,0);out.toBlob(b=>{if(!b)return;const url=URL.createObjectURL(b);const a=document.createElement('a');a.href=url;a.download=(docName||'Untitled')+'.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),0)},'image/png')};
 
 saveColor.onclick=()=>{const c=col.toLowerCase();lastColors=[c,...lastColors.filter(x=>x.toLowerCase()!==c)].slice(0,16);localStorage.setItem('canvas-colors',JSON.stringify(lastColors));renderSwatches()};
 document.querySelectorAll('[data-brush]').forEach(b=>b.onclick=()=>{brush=b.dataset.brush||'ink';document.querySelectorAll('[data-brush]').forEach(x=>x.classList.toggle('active',x===b));clearPopups();updateStatus()});
 
-document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>{const nextTool=b.dataset.tool;if(['select','lasso'].includes(nextTool)&&tool===nextTool){selected=null;operation=null;hideSelection();tool='brush';document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x.dataset.tool==='brush'));syncToolControls();updateStatus();clearPopups();return}tool=nextTool;document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x===b));if(!['select','lasso'].includes(tool)){selected=null;operation=null;hideSelection();}brush='ink';syncToolControls();updateStatus();clearPopups()});
+document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>{
+  const nextTool=b.dataset.tool;
+  // Clicking the active selection tool again deselects.
+  if(['select','lasso'].includes(nextTool)&&tool===nextTool){
+    selected=null;operation=null;hideSelection();
+    tool='brush';
+    document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x.dataset.tool==='brush'));
+    syncToolControls();updateStatus();clearPopups();
+    return;
+  }
+  tool=nextTool;
+  document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x===b));
+  // Selection persists across tool changes now. No hideSelection() here.
+  brush='ink';
+  syncToolControls();
+  updateStatus();
+  clearPopups();
+});
 if (fillWhite) {
   fillWhite.onclick=()=>{const l=layers[activeLayer];if(!l)return;snapshot();l.ctx.setTransform(d,0,0,d,0,0);l.ctx.globalAlpha=1;l.ctx.globalCompositeOperation='source-over';l.ctx.fillStyle='#fff';l.ctx.fillRect(0,0,canvasW,canvasH);renderComposite();updateStatus()};
 }
@@ -474,7 +611,6 @@ function floodFill(c,x,y,color){
   const ref=compositeCtx.getImageData(0,0,W,H);
   const targetIndex=(sy*W+sx)*4;
   const target=[ref.data[targetIndex],ref.data[targetIndex+1],ref.data[targetIndex+2],ref.data[targetIndex+3]];
-  if(target[3] <= 5) return;
   const sameColor=(i)=>{
     const dr=Math.abs(ref.data[i]-target[0]);
     const dg=Math.abs(ref.data[i+1]-target[1]);
@@ -683,6 +819,44 @@ function updateVersionInfo(){
     appVersion.title = 'Artto version';
   }
 }
-function init(){try{loadSavedColors();if(layers.length===0){activeLayer=makeLayer('Sketch');makeLayer('Line Art');}ensureStrokeCore();renderComposite();renderLayers();updateControls();hue.value=hueVal;setColor();updateStatus();updateDocInfo();updateVersionInfo();document.title=docName;fitPaper();updateDebugHUD();if (installBtn) updateInstallButtonState();}catch(err){console.error('Canvas init failed:',err);status.textContent='Application startup error';}} if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+async function init(){
+  try{
+    loadSavedColors();
+    if(layers.length===0){
+      activeLayer=makeLayer('Sketch');
+      makeLayer('Line Art');
+    }
+    ensureStrokeCore();
+    renderComposite();
+    renderLayers();
+    updateControls();
+    hue.value=hueVal;
+    setColor();
+    updateStatus();
+    updateDocInfo();
+    updateVersionInfo();
+    document.title=docName;
+    fitPaper();
+    updateDebugHUD();
+    if (installBtn) updateInstallButtonState();
+
+    // v5.0.3: Try to restore previous session from IndexedDB
+    const restored=await tryRestoreSession();
+    if(restored){
+      renderLayers();
+      updateControls();
+      updateDocInfo();
+      updateVersionInfo();
+      document.title=docName;
+      fitPaper();
+      updateStatus();
+      status.textContent='Session restored · '+new Date().toLocaleTimeString();
+    }
+  }catch(err){
+    console.error('Canvas init failed:',err);
+    status.textContent='Application startup error';
+  }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 </script></body></html>
 
